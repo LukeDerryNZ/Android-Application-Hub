@@ -2,4 +2,6 @@
     <string name="app_name">Android-Test</string>
     <string name="button_textToSpeech">Text To Speech</string>
     <string name="TTS_button_speak">Speak</string>
+    <string name="textView_TTS_Pitch">Pitch</string>
+    <string name="textView_TTS_SpeechRate">Speech Rate</string>
 </resources>
