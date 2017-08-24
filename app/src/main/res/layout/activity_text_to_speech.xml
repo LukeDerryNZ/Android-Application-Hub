@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#556e9c"
     tools:context="com.lukederrynz.android_test.TextToSpeechActivity">
 
     <EditText
@@ -40,11 +41,14 @@
     <SeekBar
         android:id="@+id/seekBar_Pitch"
         style="@style/Widget.AppCompat.SeekBar.Discrete"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="32dp"
         android:layout_marginTop="8dp"
         android:max="15"
         android:progress="5"
+        android:soundEffectsEnabled="false"
+        android:progressDrawable="@drawable/red_scrubber_progress"
+        android:thumb="@drawable/red_scrubber_control"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -54,34 +58,38 @@
         android:id="@+id/textView_TTS_Pitch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/textView_TTS_Pitch"
+        android:layout_marginTop="24dp"
+        android:text="@string/TTS_textView_Pitch"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginTop="24dp"
-        app:layout_constraintTop_toBottomOf="@+id/TTS_button_Speak"
-        app:layout_constraintHorizontal_bias="0.502" />
+        app:layout_constraintTop_toBottomOf="@+id/TTS_button_Speak" />
 
     <TextView
         android:id="@+id/textView_TTS_SpeechRate"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="24dp"
-        android:text="@string/textView_TTS_SpeechRate"
+        android:text="@string/TTS_textView_SpeechRate"
+        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/seekBar_Pitch"
-        android:layout_marginRight="8dp"
-        android:layout_marginLeft="8dp"
-        app:layout_constraintHorizontal_bias="0.501" />
+        app:layout_constraintTop_toBottomOf="@+id/seekBar_Pitch" />
 
     <SeekBar
         android:id="@+id/seekBar_SpeechRate"
         style="@style/Widget.AppCompat.SeekBar.Discrete"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="32dp"
         android:layout_marginTop="8dp"
         android:max="15"
         android:progress="5"
+        android:progressDrawable="@drawable/red_scrubber_progress"
+        android:thumb="@drawable/red_scrubber_control"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView_TTS_SpeechRate" />

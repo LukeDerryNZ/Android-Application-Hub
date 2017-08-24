@@ -9,7 +9,7 @@ import android.view.View;
 public class MainActivity extends AppCompatActivity {
 
     String entryMsg = "Android : ";
-    public static boolean DEBUG = false;
+    public static boolean DEBUG = true;
 
     // region Android On Events
 
@@ -54,8 +54,13 @@ public class MainActivity extends AppCompatActivity {
 
     // Start the Text To Speech Activity
     public void startActivityTTS(View view) {
-
         Intent i = new Intent(this, TextToSpeechActivity.class);
+        startActivity(i);        Log.d("REACHED", "getWeatherJSON called.");
+    }
+
+    // Start the Weather Activity
+    public void startActivityWeather(View view) {
+        Intent i = new Intent(this, WeatherActivity.class);
         startActivity(i);
     }
 }
