@@ -1,5 +1,8 @@
 package com.lukederrynz.android_test;
 
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.speech.tts.TextToSpeech;
 import android.support.v7.app.AppCompatActivity;
@@ -82,6 +85,19 @@ public class TextToSpeechActivity extends AppCompatActivity {
         button_Speak = (Button)findViewById(R.id.TTS_button_Speak);
         seekBar_Pitch = (SeekBar)findViewById(R.id.seekBar_Pitch);
         seekBar_SpeechRate = (SeekBar)findViewById(R.id.seekBar_SpeechRate);
+
+        /*  Set the editText colors
+         *  Note that there are better methods to do this using themes or styles
+         *  This method ONLY affects this drawable
+         */
+        Drawable d = editText.getBackground();
+        d.setColorFilter(Color.GRAY, PorterDuff.Mode.SRC_ATOP);
+        // Backwards compatibility
+        if (Build.VERSION.SDK_INT > 16 ) {
+            editText.setBackground(d);
+        } else {
+            editText.setBackgroundDrawable(d);
+        }
     }
 
     // Called when another activity takes focus.

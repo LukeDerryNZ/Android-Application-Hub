@@ -23,6 +23,7 @@ public class weather {
     private static final String OPENWEATHERMAP_URL = "http://api.openweathermap.org/data/2.5/weather?lat=%s&lon=%s&units=metric";
     private static final String OPENWEATHERMAP_API = "e2fe334522540a12b03fee3a3bc9b577";
 
+    //
     public static String setWeatherIcon(int actualId, long sunrise, long sunset){
         int id = actualId / 100;
         String icon = "";
@@ -52,11 +53,13 @@ public class weather {
         return icon;
     }
 
+    //
     public interface AsyncResponse {
 
         void processFinish(String output1, String output2, String output3, String output4, String output5, String output6, String output7, String output8);
     }
 
+    //
     public static class placeIdTask extends AsyncTask<String, Void, JSONObject> {
 
         // Call back interface
@@ -90,8 +93,8 @@ public class weather {
                     String pressure = main.getString("pressure")+" hPa";
                     String updatedOn = df.format(new Date(json.getLong("dt")*1000));
                     String iconText = setWeatherIcon(details.getInt("id"),
-                            json.getJSONObject("sys").getLong("sunrise")*1000,
-                            json.getJSONObject("sys").getLong("sunset")*1000);
+                            json.getJSONObject("sys").getLong("sunrise")*1000,  // Sunrise
+                            json.getJSONObject("sys").getLong("sunset")*1000);  // Sunset
                     delegate.processFinish(city, description, temperature, humidity, pressure, updatedOn, iconText, ""+
                             (json.getJSONObject("sys").getLong("sunrise")*1000));
                 }
