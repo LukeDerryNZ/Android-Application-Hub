@@ -1,8 +1,11 @@
 <resources>
     <string name="app_name">Android-Test</string>
 
+    <!-- Main Menu -->
+    <string name="button_StartTextToSpeech">Text To Speech</string>
+    <string name="button_StartWeatherActivity">Weather</string>
+
     <!-- Text To Speech App -->
-    <string name="TTS_button_textToSpeech">Text To Speech</string>
     <string name="TTS_button_speak">Speak</string>
     <string name="TTS_textView_Pitch">Pitch</string>
     <string name="TTS_textView_SpeechRate">Speech Rate</string>
@@ -11,6 +14,8 @@
     <string name="Weather_textView_Title">Weather API</string>
     <string name="Weather_textView_City">Please Enter City Name</string>
     <string name="Weather_button_City">Search</string>
-    <string name="button_StartWeatherActivity">Weather</string>
+    <string name="Weather_button_GetLocation">Get Location</string>
+    <string name="Weather_textView_Humidity" formatted="false">Humidity</string>
+    <string name="Weather_textView_Pressure" formatted="false">Pressure</string>
 
 </resources>
