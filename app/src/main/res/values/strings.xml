@@ -5,6 +5,7 @@
     <string name="button_StartTextToSpeech">Text To Speech</string>
     <string name="button_StartWeatherActivity">Weather</string>
     <string name="button_StartCalculator">Calculator</string>
+    <string name="button_UNUSED">Unused</string>
 
     <!-- Text To Speech App -->
     <string name="TTS_button_speak">Speak</string>
@@ -18,5 +19,12 @@
     <string name="Weather_button_GetLocation">Get Location</string>
     <string name="Weather_textView_Humidity" formatted="false">Humidity</string>
     <string name="Weather_textView_Pressure" formatted="false">Pressure</string>
+
+    <!-- Calculator App -->
+    <string name="Calculator_button_Multiply">X</string>
+    <string name="Calculator_button_Divide">/</string>
+    <string name="Calculator_button_Add">+</string>
+    <string name="Calculator_button_Subtract">-</string>
+    <string name="Calculator_button_Equals">=</string>
 
 </resources>

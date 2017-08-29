@@ -15,9 +15,6 @@ import java.util.ArrayList;
 public class CalculatorActivity extends AppCompatActivity {
 
     private TextView textView;
-    private ArrayList<Button> numButtons;
-    private GridLayout numGridLayout;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,8 +25,8 @@ public class CalculatorActivity extends AppCompatActivity {
 
     // Custom String Param Listener
     private class myListener implements View.OnClickListener {
-        protected String value;
-        public myListener(String s) { value = s; }
+        String value;
+        private myListener(String s) { value = s; }
         @Override public void onClick(View v) {}
     }
 
@@ -39,23 +36,21 @@ public class CalculatorActivity extends AppCompatActivity {
         textView = (TextView)findViewById(R.id.Calculator_textView);
         textView.setText("");
 
-        numGridLayout = (GridLayout)findViewById(R.id.Calculator_numbersGridLayout);
-
-        numButtons = new ArrayList<>();
+        GridLayout numGridLayout = (GridLayout)findViewById(R.id.Calculator_numbersGridLayout);
 
         // Create number button events
         for(int i=0; i<numGridLayout.getChildCount(); i++) {
 
+            Button tempButton = (Button)numGridLayout.getChildAt(i);
             // create new button event for this button
-            numButtons.add( (Button)numGridLayout.getChildAt(i) );
-            numButtons.get(i).setOnClickListener(new myListener(numButtons.get(i).getText().toString()) {
+            numGridLayout.getChildAt(i).setOnClickListener(new myListener(tempButton.getText().toString()) {
                 @Override public void onClick(View v) {
                     switch (this.value) {
                         case "=":
                             calculateEquation();
                             break;
                         default:
-                            Toast.makeText(CalculatorActivity.this, "Number "+this.value, Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(CalculatorActivity.this, "Number "+this.value, Toast.LENGTH_SHORT).show();
                             enterNumber(this.value);
                             break;
                     }
