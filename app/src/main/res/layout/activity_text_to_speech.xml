@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorBackground"
+    android:background="@color/colorPrimary"
     tools:context="com.lukederrynz.application_Hub.TextToSpeechActivity">
 
     <EditText
@@ -26,14 +26,15 @@
 
     <Button
         android:id="@+id/TTS_button_Speak"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="128dp"
+        android:layout_height="59dp"
         android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
-        android:background="@color/colorAccent"
+        android:background="@drawable/rectangle_rounded"
+        android:backgroundTint="@color/colorAccent"
         android:text="@string/TTS_button_speak"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -47,8 +48,8 @@
         android:layout_marginTop="8dp"
         android:max="15"
         android:progress="5"
-        android:soundEffectsEnabled="false"
         android:progressDrawable="@drawable/blue_scrubber_progress"
+        android:soundEffectsEnabled="false"
         android:thumb="@drawable/blue_scrubber_control"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
