@@ -1,10 +1,8 @@
-package com.lukederrynz.android_test;
+package com.lukederrynz.application_Hub;
 
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.graphics.Typeface;
-import android.location.Address;
-import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -19,8 +17,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.List;
-import java.util.Locale;
+import com.lukederrynz.android_test.R;
 
 
 public class WeatherActivity extends AppCompatActivity implements LocationListener {

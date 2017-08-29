@@ -4,6 +4,7 @@
     <!-- Main Menu -->
     <string name="button_StartTextToSpeech">Text To Speech</string>
     <string name="button_StartWeatherActivity">Weather</string>
+    <string name="button_StartCalculator">Calculator</string>
 
     <!-- Text To Speech App -->
     <string name="TTS_button_speak">Speak</string>

@@ -1,4 +1,4 @@
-package com.lukederrynz.android_test;
+package com.lukederrynz.application_Hub;
 
 import android.os.AsyncTask;
 import android.util.Log;
@@ -24,7 +24,7 @@ public class weather {
     private static final String OPENWEATHERMAP_API = "e2fe334522540a12b03fee3a3bc9b577";
 
     //
-    public static String setWeatherIcon(int actualId, long sunrise, long sunset){
+    private static String setWeatherIcon(int actualId, long sunrise, long sunset){
         int id = actualId / 100;
         String icon = "";
         if(actualId == 800){
@@ -104,7 +104,7 @@ public class weather {
         }
     }
 
-    public static JSONObject getWeatherJSON(String lat, String lon) {
+    private static JSONObject getWeatherJSON(String lat, String lon) {
 
         try {
             URL url = new URL(String.format(OPENWEATHERMAP_URL, lat, lon));
