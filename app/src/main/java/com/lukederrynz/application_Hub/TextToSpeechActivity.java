@@ -1,5 +1,6 @@
 package com.lukederrynz.application_Hub;
 
+import android.app.Activity;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
@@ -8,6 +9,7 @@ import android.speech.tts.TextToSpeech;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.SeekBar;
@@ -23,22 +25,21 @@ public class TextToSpeechActivity extends AppCompatActivity {
     private TextToSpeech TTS;
     private Button button_Speak;
     private SeekBar seekBar_Pitch, seekBar_SpeechRate;
-
     private float pitch = 0f, speechRate = 0f;
-    private int divisor = 10;                      // Divisor for speech pitch and rate
+    private int divisor = 10; // Divisor for speech pitch and rate
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_text_to_speech);
 
-        initializeControls();
-        initializeTTS();
-        initializeListeners();
+        initControls();
+        initTTS();
+        initListeners();
     }
 
     // Init Text to speech engine
-    private void initializeTTS() {
+    private void initTTS() {
         TTS = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
             @Override public void onInit(int status) {
                 if (status != TextToSpeech.ERROR) {
@@ -53,7 +54,7 @@ public class TextToSpeechActivity extends AppCompatActivity {
     }
 
     // Init UI
-    private void initializeControls() {
+    private void initControls() {
 
         editText = (EditText)findViewById(R.id.TTS_editText);
         button_Speak = (Button)findViewById(R.id.TTS_button_Speak);
@@ -70,11 +71,14 @@ public class TextToSpeechActivity extends AppCompatActivity {
 
     }
 
-    private void initializeListeners() {
+    private void initListeners() {
         // Speak Listener
         button_Speak.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
                 String toSpeak = editText.getText().toString();
+
+                InputMethodManager imm = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
+                imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
 
                 // Bail if we have an empty string
                 if (toSpeak.isEmpty()) {
