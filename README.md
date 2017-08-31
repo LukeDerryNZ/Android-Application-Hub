@@ -8,14 +8,14 @@ _Created by_ [_**Luke Derry**_](https://www.linkedin.com/in/lukederry/)
 - ## Main Menu [_Developing..._]  
   - Progress: [_~**70**%_]  
   - **TODO**:  
-    - Bottom row of buttons vertically stretched  
+    - Bottom row of buttons vertically stretched on S3  
     
 - ## Weather [_Developing..._]  
   - Progress: [_~**60**%_]  
   - **TODO**:  
     - User text-entry for location  
 - ## Non-Scientific Calculator [_Designing..._]  
-  - Progress: [_~**25**%_]  
+  - Progress: [_~**45**%_]  
   - **TODO**:  
     - User Interface  
       - Fix ratio for Samsung S3  
