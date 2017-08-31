@@ -23,8 +23,9 @@ public class TextToSpeechActivity extends AppCompatActivity {
     private TextToSpeech TTS;
     private Button button_Speak;
     private SeekBar seekBar_Pitch, seekBar_SpeechRate;
-    private float pitch = 0.0f, speechRate = 0.0f;
 
+    private float pitch = 0f, speechRate = 0f;
+    private int divisor = 10;                      // Divisor for speech pitch and rate
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,56 +34,30 @@ public class TextToSpeechActivity extends AppCompatActivity {
 
         initializeControls();
 
+        initializeTTS();
 
+        initializeListeners();
+
+
+    }
+
+    private void initializeTTS() {
         TTS = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
             @Override public void onInit(int status) {
                 if (status != TextToSpeech.ERROR) {
-                    TTS.setLanguage(Locale.UK);
-                }
-            }
-        });
-
-        // Speak Listener
-        button_Speak.setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View v) {
-                String toSpeak = editText.getText().toString();
-                Toast.makeText(getApplicationContext(), toSpeak, Toast.LENGTH_SHORT).show();
-
-                TTS.setPitch(pitch);
-                TTS.setSpeechRate(speechRate);
-
-                if (!TTS.isSpeaking()) {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                        TTS.speak(toSpeak, TextToSpeech.QUEUE_FLUSH, null, null);
+                        TTS.getVoice().getLocale();
                     } else {
-                        TTS.speak(toSpeak, TextToSpeech.QUEUE_FLUSH, null);
+                        TTS.setLanguage(Locale.UK); // Deprecated in version >= 21
                     }
                 }
             }
-        });
-
-        // Pitch Listener
-        seekBar_Pitch.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-                // Divide by 10 to get speech rate between 0.0-1.0
-                pitch = ((float)i + 1) / 10.0f;
-            }
-            @Override public void onStartTrackingTouch(SeekBar seekBar) { }
-            @Override public void onStopTrackingTouch(SeekBar seekBar) { }
-        });
-
-        // Speech Rate Listener
-        seekBar_SpeechRate.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-                speechRate = ((float)i + 1) / 5.0f;
-            }
-            @Override public void onStartTrackingTouch(SeekBar seekBar) { }
-            @Override public void onStopTrackingTouch(SeekBar seekBar) { }
         });
     }
 
     // Init UI
     private void initializeControls() {
+
         editText = (EditText)findViewById(R.id.TTS_editText);
         button_Speak = (Button)findViewById(R.id.TTS_button_Speak);
         seekBar_Pitch = (SeekBar)findViewById(R.id.seekBar_Pitch);
@@ -95,11 +70,54 @@ public class TextToSpeechActivity extends AppCompatActivity {
         Drawable d = editText.getBackground();
         d.setColorFilter(Color.GRAY, PorterDuff.Mode.SRC_ATOP);
         // Backwards compatibility
-        if (Build.VERSION.SDK_INT > 16 ) {
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.ICE_CREAM_SANDWICH ) { // 16
             editText.setBackground(d);
         } else {
             editText.setBackgroundDrawable(d);
         }
+    }
+
+    private void initializeListeners() {
+        // Speak Listener
+        button_Speak.setOnClickListener(new View.OnClickListener() {
+            @Override public void onClick(View v) {
+                String toSpeak = editText.getText().toString();
+
+                // Bail if we have an empty string
+                if (toSpeak.isEmpty()) return;
+
+                // Display the message spoken
+                Toast.makeText(getApplicationContext(), toSpeak, Toast.LENGTH_SHORT).show();
+
+                TTS.setPitch(pitch);
+                TTS.setSpeechRate(speechRate);
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    TTS.speak(toSpeak, TextToSpeech.QUEUE_FLUSH, null, null);
+                } else {
+                    TTS.speak(toSpeak, TextToSpeech.QUEUE_FLUSH, null);
+                }
+            }
+        });
+
+        // Pitch Listener
+        seekBar_Pitch.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                // Divide by 10 to get speech rate between 0.0-1.0
+                pitch = ((float)i+1) / divisor;
+            }
+            @Override public void onStartTrackingTouch(SeekBar seekBar) { }
+            @Override public void onStopTrackingTouch(SeekBar seekBar) { }
+        });
+
+        // Speech Rate Listener
+        seekBar_SpeechRate.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                speechRate = ((float)i+1) / divisor;
+            }
+            @Override public void onStartTrackingTouch(SeekBar seekBar) { }
+            @Override public void onStopTrackingTouch(SeekBar seekBar) { }
+        });
     }
 
     // Called when another activity takes focus.
