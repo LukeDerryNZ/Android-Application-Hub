@@ -39,8 +39,7 @@
             android:background="@drawable/rectangle_rounded"
             android:backgroundTint="@color/colorPrimary"
             android:onClick="startActivityTTS"
-            android:text="@string/button_StartTextToSpeech"
-            tools:layout_editor_absoluteY="88dp" />
+            android:text="@string/button_StartTextToSpeech" />
 
         <Button
             android:id="@+id/button_StartWeatherActivity"

@@ -33,14 +33,11 @@ public class TextToSpeechActivity extends AppCompatActivity {
         setContentView(R.layout.activity_text_to_speech);
 
         initializeControls();
-
         initializeTTS();
-
         initializeListeners();
-
-
     }
 
+    // Init Text to speech engine
     private void initializeTTS() {
         TTS = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
             @Override public void onInit(int status) {
@@ -69,12 +66,8 @@ public class TextToSpeechActivity extends AppCompatActivity {
          */
         Drawable d = editText.getBackground();
         d.setColorFilter(Color.GRAY, PorterDuff.Mode.SRC_ATOP);
-        // Backwards compatibility
-        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.ICE_CREAM_SANDWICH ) { // 16
-            editText.setBackground(d);
-        } else {
-            editText.setBackgroundDrawable(d);
-        }
+        editText.setBackground(d);
+
     }
 
     private void initializeListeners() {
