@@ -1,7 +1,7 @@
 # Android-Application-Hub  
 Android Studio Hub - _A Collection of Micro Applications_  
   
-_Created by_ [_**Luke Derry**_](https://www.linkedin.com/in/lukederry/)  
+_Created by_[_**Luke Derry**_](https://www.linkedin.com/in/lukederry/)  
 
 # Initial Design Doc:  
 
