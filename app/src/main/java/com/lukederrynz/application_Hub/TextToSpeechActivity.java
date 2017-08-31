@@ -77,7 +77,11 @@ public class TextToSpeechActivity extends AppCompatActivity {
                 String toSpeak = editText.getText().toString();
 
                 // Bail if we have an empty string
-                if (toSpeak.isEmpty()) return;
+                if (toSpeak.isEmpty()) {
+                    TTS.setPitch(2.0f); TTS.setSpeechRate(1.0f);
+                    TTS.speak("Please Enter some text first", TextToSpeech.QUEUE_FLUSH, null);
+                    return;
+                }
 
                 // Display the message spoken
                 Toast.makeText(getApplicationContext(), toSpeak, Toast.LENGTH_SHORT).show();
