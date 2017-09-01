@@ -9,13 +9,13 @@ _Created by_ [_**Luke Derry**_](https://www.linkedin.com/in/lukederry/)
 
 - ## Main Menu [_Developing..._]  
   - Progress: [_~**75**%_]  
-  - **TASK LIST**:  
+  - **BACKLOG**:  
     - [ ] Remaining buttons require activities 
     - [ ] Dropdown About screen overlay
     
 - ## Weather [_OnHold..._]  
   - Progress: [_~**40**%_]  
-  - **TASK LIST**:  
+  - **BACKLOG**:  
     - [ ] User text-entry for location  
     - [x] Allow the user to retrieve correct weather info  
     - [x] Correctly detect user's location  
@@ -24,7 +24,7 @@ _Created by_ [_**Luke Derry**_](https://www.linkedin.com/in/lukederry/)
     
 - ## Non-Scientific Calculator [_Developing..._]  
   - Progress: [_~**65**%_]  
-  - **TASK LIST**:  
+  - **BACKLOG**:  
     - [ ] User Interface  
     - [ ] TDD approach to methods and testing  
     - [ ] Refactor event listeners for all buttons  
@@ -32,13 +32,14 @@ _Created by_ [_**Luke Derry**_](https://www.linkedin.com/in/lukederry/)
   
 - ## User Interface [_Developing..._]
   - Progress: [_~**50**%_]
-  - **TASK LIST**:  
+  - **BACKLOG**:  
     - [ ] Establish Visual / Audio feedback for user interaction  
     - [ ] Transition from MainMenu -> selected Activity  
     - [ ] Overhaul colour scheme  
     
-### Other Potential Activities:  
+### Other Planned Activities:  
 - Shopping List  
+- Planning Poker  
 - Gallery  
 - Theme selector / Transition selector  
 - Time Management System  / Alarm  
