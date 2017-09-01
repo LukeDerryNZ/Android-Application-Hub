@@ -3,7 +3,7 @@ package com.lukederrynz.application_Hub;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.lukederrynz.application_hub.R;
+import com.lukederrynz.android_test.R;
 
 public class AboutActivity extends AppCompatActivity {
 

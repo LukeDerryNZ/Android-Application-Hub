@@ -71,4 +71,10 @@ public class MainActivity extends AppCompatActivity {
         Intent i = new Intent(this, CalculatorActivity.class);
         startActivity(i);
     }
+
+    // Start the About Activity
+    public void startActivityAbout(View view) {
+        Intent i = new Intent(this, AboutActivity.class);
+        startActivity(i);
+    }
 }
