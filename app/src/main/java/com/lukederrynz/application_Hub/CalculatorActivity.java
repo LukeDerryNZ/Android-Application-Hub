@@ -40,8 +40,16 @@ public class CalculatorActivity extends AppCompatActivity {
     //
     private void initializeControls() {
 
-        textView = (TextView)findViewById(R.id.Calculator_textView);
+        textView = (TextView) findViewById(R.id.Calculator_textView);
         textView.setText("");
+
+        initNumGrid();
+        initOpGrid();
+    }
+
+
+    // Initialize number grid and listeners
+    private void initNumGrid() {
 
         // Create number button events
         GridLayout numGridLayout = (GridLayout)findViewById(R.id.Calculator_numbersGridLayout);
@@ -63,12 +71,19 @@ public class CalculatorActivity extends AppCompatActivity {
                                 equationStack.clear();
                         }
                     } else {
+                        // Check for decimal
+                        if (this.value.equals(".") && textView.getText().toString().contains(".")) {
+                            return;
+                        }
                         enterNumber(this.value);
                     }
                 }
             });
         }
+    }
 
+    // Initialize operator grid and listeners
+    private void initOpGrid() {
         // Create operator button events
         GridLayout operatorGridLayout = (GridLayout)findViewById(R.id.Calculator_operatorsGridLayout);
         for(int i=0; i<operatorGridLayout.getChildCount(); i++) {
@@ -79,6 +94,12 @@ public class CalculatorActivity extends AppCompatActivity {
 
                     // Bail if textView is empty - Note that this disallows negatives
                     if (isTextViewEmpty()) return;
+
+                    // Clear button
+                    if (this.value.equals("C")) {
+                        clearAll();
+                        return;
+                    }
 
                     switch (equationStack.size()) {
                         case 0:
@@ -135,13 +156,12 @@ public class CalculatorActivity extends AppCompatActivity {
                             // Finally add operator
                             equationStack.push(this.value);
                     }
-
                 }
             });
         }
-
-
     }
+
+
 
     // Calculate valueOne Operator valueTwo
     // Note that NO other equation format is compatible
@@ -189,6 +209,12 @@ public class CalculatorActivity extends AppCompatActivity {
     // Clear textView
     private void cleartextView() {
         textView.setText("");
+    }
+
+    // Clear all
+    private void clearAll() {
+        cleartextView();
+        equationStack.clear();
     }
 
     // Enter number into textView
