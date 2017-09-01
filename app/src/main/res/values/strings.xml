@@ -8,24 +8,24 @@
     <string name="button_UNUSED">Unused</string>
 
     <!-- Text To Speech App -->
-    <string name="TTS_button_speak"             >Speak</string>
-    <string name="TTS_textView_Pitch"           >Pitch</string>
-    <string name="TTS_textView_SpeechRate"      >Speech Rate</string>
+    <string name="TTS_button_speak">Speak</string>
+    <string name="TTS_textView_Pitch">Pitch</string>
+    <string name="TTS_textView_SpeechRate">Speech Rate</string>
 
     <!-- Weather App -->
-    <string name="Weather_textView_Title"       >Weather API</string>
-    <string name="Weather_textView_City"        >Please Enter City Name</string>
-    <string name="Weather_button_City"          >Search</string>
-    <string name="Weather_button_GetLocation"   >Get Location</string>
-    <string name="Weather_textView_Humidity"    >Humidity</string>
-    <string name="Weather_textView_Pressure"    >Pressure</string>
+    <string name="Weather_textView_Title">Weather API</string>
+    <string name="Weather_textView_City">Please Enter City Name</string>
+    <string name="Weather_button_City">Search</string>
+    <string name="Weather_button_GetLocation">Get Location</string>
+    <string name="Weather_textView_Humidity">Humidity</string>
+    <string name="Weather_textView_Pressure">Pressure</string>
 
     <!-- Calculator App -->
-    <string name="Calculator_button_Multiply"   >X</string>
-    <string name="Calculator_button_Divide"     >/</string>
-    <string name="Calculator_button_Add"        >+</string>
-    <string name="Calculator_button_Subtract"   >-</string>
-    <string name="Calculator_button_Equals"     >=</string>
-    <string name="Calculator_button_Clear"      >C</string>
+    <string name="Calculator_button_Multiply">X</string>
+    <string name="Calculator_button_Divide">/</string>
+    <string name="Calculator_button_Add">+</string>
+    <string name="Calculator_button_Subtract">-</string>
+    <string name="Calculator_button_Equals">=</string>
+    <string name="Calculator_button_Clear">C</string>
 
 </resources>

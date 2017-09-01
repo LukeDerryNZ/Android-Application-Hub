@@ -26,17 +26,18 @@
         <!-- Text To Speech Activity -->
         <activity
             android:name="com.lukederrynz.application_Hub.TextToSpeechActivity"
-            android:parentActivityName="com.lukederrynz.application_Hub.MainActivity"/>
+            android:parentActivityName="com.lukederrynz.application_Hub.MainActivity" />
 
         <!-- Weather Activity -->
         <activity
             android:name="com.lukederrynz.application_Hub.WeatherActivity"
-            android:parentActivityName="com.lukederrynz.application_Hub.MainActivity"/>
+            android:parentActivityName="com.lukederrynz.application_Hub.MainActivity" />
 
         <!-- Calculator Activity -->
         <activity
             android:name="com.lukederrynz.application_Hub.CalculatorActivity"
-            android:parentActivityName="com.lukederrynz.application_Hub.MainActivity"/>
+            android:parentActivityName="com.lukederrynz.application_Hub.MainActivity" />
+        <activity android:name="com.lukederrynz.application_Hub.AboutActivity"></activity>
     </application>
 
 </manifest>
