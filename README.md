@@ -20,7 +20,6 @@ _Created by_ [_**Luke Derry**_](https://www.linkedin.com/in/lukederry/)
     - [ ] Remaining buttons require activities 
     - [ ] Dropdown About screen overlay
     
-  [:arrow_up:](https://github.com/LukeDerryNZ/Android-Application-Hub#android-application-hub)  
 - ## Weather [_OnHold..._]  
   - Progress: [_~**40**%_]  
   - **BACKLOG**:  
@@ -30,7 +29,7 @@ _Created by_ [_**Luke Derry**_](https://www.linkedin.com/in/lukederry/)
     - [ ] Set visible time-out after button click  
     - [ ] Visible feedback if weather retrieval has failed  
     
-  [:arrow_up:](https://github.com/LukeDerryNZ/Android-Application-Hub#android-application-hub)  
+  
 - ## Non-Scientific Calculator [_Developing..._]  
   - Progress: [_~**65**%_]  
   - **BACKLOG**:  
@@ -39,7 +38,7 @@ _Created by_ [_**Luke Derry**_](https://www.linkedin.com/in/lukederry/)
     - [ ] Refactor event listeners for all buttons  
     - [ ] Test arithmetic  
   
-    [:arrow_up:](https://github.com/LukeDerryNZ/Android-Application-Hub#android-application-hub)     
+  
 - ## User Interface [_Developing..._]  
   - Progress: [_~**50**%_]  
   - **BACKLOG**:  
@@ -47,7 +46,7 @@ _Created by_ [_**Luke Derry**_](https://www.linkedin.com/in/lukederry/)
     - [ ] Transition from MainMenu -> selected Activity  
     - [ ] Overhaul colour scheme  
   
-    [:arrow_up:](https://github.com/LukeDerryNZ/Android-Application-Hub#android-application-hub)  
+  
 ### Other Planned Activities:  
 - Shopping List  
 - Planning Poker  
@@ -56,4 +55,4 @@ _Created by_ [_**Luke Derry**_](https://www.linkedin.com/in/lukederry/)
 - Time Management System  / Alarm  
 - Opengles Demo  
   
-  [:arrow_up:](https://github.com/LukeDerryNZ/Android-Application-Hub#android-application-hub)  Back To Top
+[:arrow_up:](https://github.com/LukeDerryNZ/Android-Application-Hub#android-application-hub)  Back To Top
