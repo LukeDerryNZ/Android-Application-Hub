@@ -131,9 +131,9 @@ public class CalculatorActivity extends AppCompatActivity {
 
                         case 3:
                             // Process the first equation
-                            double v1 = Double.valueOf(equationStack.pop());
-                            String op = equationStack.pop();
                             double v2 = Double.valueOf(equationStack.pop());
+                            String op = equationStack.pop();
+                            double v1 = Double.valueOf(equationStack.pop());
 
                             // Calculate equation and push to stack
                             switch(op) {
@@ -169,28 +169,30 @@ public class CalculatorActivity extends AppCompatActivity {
 
         cleartextView();
         // Process the first equation
-        double v1 = Double.valueOf(equationStack.pop());
-        String op = equationStack.pop();
         double v2 = Double.valueOf(equationStack.pop());
-
+        String op = equationStack.pop();
+        double v1 = Double.valueOf(equationStack.pop());
+        double result = 0.0;
 
         // Calculate equation and push to stack
         switch(op) {
             case "+":
-                return calculator.new AddOperation().execute(v1, v2);
+                result = calculator.new AddOperation().execute(v1, v2);
+                break;
             case "-":
-                return calculator.new SubtractOperation().execute(v1, v2);
+                result = calculator.new SubtractOperation().execute(v1, v2);
+                break;
             case "X":
-                return calculator.new MultiplyOperation().execute(v1, v2);
+                result = calculator.new MultiplyOperation().execute(v1, v2);
+                break;
             case "/":
-                return calculator.new DivideOperation().execute(v1, v2);
+                result = calculator.new DivideOperation().execute(v1, v2);
+                break;
             default:
                 Toast.makeText(CalculatorActivity.this, "Invalid Operator", Toast.LENGTH_SHORT).show();
                 break;
         }
-        // TODO //
-        return v1; // ERROR - Just return v1 for now
-
+        return result;
     }
 
     private String getValueAsString() {
