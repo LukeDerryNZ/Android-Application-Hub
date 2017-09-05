@@ -33,7 +33,7 @@ _Created by_ [_**Luke Derry**_](https://www.linkedin.com/in/lukederry/)
 - ## Non-Scientific Calculator [_Developing..._]  
   - Progress: [_~**65**%_]  
   - **BACKLOG**:  
-    - [ ] User Interface  
+    - [x] User Interface  
     - [ ] TDD approach to methods and testing  
     - [ ] Refactor event listeners for all buttons  
     - [ ] Test arithmetic  
