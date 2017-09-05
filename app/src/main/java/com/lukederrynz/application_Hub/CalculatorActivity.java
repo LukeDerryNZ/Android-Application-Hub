@@ -52,7 +52,8 @@ public class CalculatorActivity extends AppCompatActivity {
     private void initNumGrid() {
 
         // Create number button events
-        GridLayout numGridLayout = (GridLayout)findViewById(R.id.Calculator_numbersGridLayout);
+        // Using android.support.v7.widget.GridLayout for
+        android.support.v7.widget.GridLayout numGridLayout = (android.support.v7.widget.GridLayout)findViewById(R.id.Calculator_numbersGridLayout);
         for(int i=0; i<numGridLayout.getChildCount(); i++) {
             // Cache button
             Button tempButton = (Button)numGridLayout.getChildAt(i);
@@ -85,7 +86,7 @@ public class CalculatorActivity extends AppCompatActivity {
     // Initialize operator grid and listeners
     private void initOpGrid() {
         // Create operator button events
-        GridLayout operatorGridLayout = (GridLayout)findViewById(R.id.Calculator_operatorsGridLayout);
+        android.support.v7.widget.GridLayout operatorGridLayout = (android.support.v7.widget.GridLayout) findViewById(R.id.Calculator_operatorsGridLayout);
         for(int i=0; i<operatorGridLayout.getChildCount(); i++) {
             final Button tempButton = (Button)operatorGridLayout.getChildAt(i);
             // Create a new event
@@ -160,8 +161,6 @@ public class CalculatorActivity extends AppCompatActivity {
             });
         }
     }
-
-
 
     // Calculate valueOne Operator valueTwo
     // Note that NO other equation format is compatible
