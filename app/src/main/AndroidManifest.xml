@@ -41,7 +41,7 @@
         <!-- About Activity -->
         <activity android:name="com.lukederrynz.application_Hub.AboutActivity"
             android:parentActivityName="com.lukederrynz.application_Hub.MainActivity"/>
-        
+
     </application>
 
 </manifest>
