@@ -23,11 +23,6 @@ import com.lukederrynz.android_test.R;
 public class WeatherActivity extends AppCompatActivity implements LocationListener {
 
     private TextView cityField, detailsField, currentTemperatureField, humidityField, pressureField, weatherIcon, updatedField, textView_Location;
-    private Typeface weatherFont;
-    private LocationManager locationManager;
-    private Button button_getLocation;
-
-    //region On Events
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,15 +32,12 @@ public class WeatherActivity extends AppCompatActivity implements LocationListen
         initializeControls();
     }
 
-    //endregion
-
     private void initializeControls() {
 
-        button_getLocation = (Button)findViewById(R.id.Weather_button_getWeather);
-
+        // Request location
         requestLocationAccess();
 
-        weatherFont = Typeface.createFromAsset(getAssets(), "fonts/weathericons-regular-webfont.ttf");
+        Typeface weatherFont = Typeface.createFromAsset(getAssets(), "fonts/weathericons-regular-webfont.ttf");
         cityField = (TextView)findViewById(R.id.Weather_textView_city_field);
         updatedField = (TextView)findViewById(R.id.Weather_textView_updated_field);
         detailsField = (TextView)findViewById(R.id.Weather_textView_details_field);
@@ -55,9 +47,8 @@ public class WeatherActivity extends AppCompatActivity implements LocationListen
         weatherIcon = (TextView)findViewById(R.id.Weather_textView_weather_icon);
         weatherIcon.setTypeface(weatherFont);
 
-
-
         // Set location button click event
+        Button button_getLocation = (Button)findViewById(R.id.Weather_button_getWeather);
         button_getLocation.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
                 getLocation();
@@ -82,9 +73,10 @@ public class WeatherActivity extends AppCompatActivity implements LocationListen
 
     private void getLocation() {
         try {
-            locationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
+            LocationManager locationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
             locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 5000, 5, this);
             Location l = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+
             weather.placeIdTask asyncTask = new weather.placeIdTask(new weather.AsyncResponse() {
                 public void processFinish(String weather_city, String weather_description, String weather_temperature,
                                           String weather_humidity, String weather_pressure, String weather_updatedOn,
@@ -98,6 +90,7 @@ public class WeatherActivity extends AppCompatActivity implements LocationListen
                     weatherIcon.setText(Html.fromHtml(weather_iconText)); //TODO DEPRECATED
                 }
             });
+
             String latitude = String.valueOf(l.getLatitude());
             String longitude = String.valueOf(l.getLongitude());
             asyncTask.execute(latitude, longitude);
