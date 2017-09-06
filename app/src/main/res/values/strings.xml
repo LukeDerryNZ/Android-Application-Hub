@@ -28,4 +28,8 @@
     <string name="Calculator_button_Equals">=</string>
     <string name="Calculator_button_Clear">C</string>
 
+    <!-- About App -->
+    <string name="About_button_LinkedIn">LinkedIn Profile</string>
+    <string name="About_button_GitHub">GitHub Repository</string>
+
 </resources>
