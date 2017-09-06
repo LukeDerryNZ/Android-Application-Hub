@@ -82,7 +82,7 @@ public class TextToSpeechActivity extends AppCompatActivity {
 
                 // Bail if we have an empty string
                 if (toSpeak.isEmpty()) {
-                    TTS.setPitch(2.0f); TTS.setSpeechRate(1.0f);
+                    TTS.setPitch(1.0f); TTS.setSpeechRate(1.0f);
                     TTS.speak("Please Enter some text first", TextToSpeech.QUEUE_FLUSH, null);
                     return;
                 }
