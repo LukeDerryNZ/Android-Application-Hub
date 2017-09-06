@@ -37,7 +37,11 @@
         <activity
             android:name="com.lukederrynz.application_Hub.CalculatorActivity"
             android:parentActivityName="com.lukederrynz.application_Hub.MainActivity" />
-        <activity android:name="com.lukederrynz.application_Hub.AboutActivity"></activity>
+
+        <!-- About Activity -->
+        <activity android:name="com.lukederrynz.application_Hub.AboutActivity"
+            android:parentActivityName="com.lukederrynz.application_Hub.MainActivity"/>
+        
     </application>
 
 </manifest>
