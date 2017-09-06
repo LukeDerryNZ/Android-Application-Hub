@@ -4,7 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.GridLayout;
+import android.support.v7.widget.GridLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -53,7 +53,7 @@ public class CalculatorActivity extends AppCompatActivity {
 
         // Create number button events
         // Using android.support.v7.widget.GridLayout for
-        android.support.v7.widget.GridLayout numGridLayout = (android.support.v7.widget.GridLayout)findViewById(R.id.Calculator_numbersGridLayout);
+        GridLayout numGridLayout = (GridLayout)findViewById(R.id.Calculator_numbersGridLayout);
         for(int i=0; i<numGridLayout.getChildCount(); i++) {
             // Cache button
             Button tempButton = (Button)numGridLayout.getChildAt(i);
@@ -86,7 +86,7 @@ public class CalculatorActivity extends AppCompatActivity {
     // Initialize operator grid and listeners
     private void initOpGrid() {
         // Create operator button events
-        android.support.v7.widget.GridLayout operatorGridLayout = (android.support.v7.widget.GridLayout) findViewById(R.id.Calculator_operatorsGridLayout);
+        GridLayout operatorGridLayout = (GridLayout) findViewById(R.id.Calculator_operatorsGridLayout);
         for(int i=0; i<operatorGridLayout.getChildCount(); i++) {
             final Button tempButton = (Button)operatorGridLayout.getChildAt(i);
             // Create a new event
