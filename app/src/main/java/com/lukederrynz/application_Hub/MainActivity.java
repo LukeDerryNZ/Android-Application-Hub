@@ -77,4 +77,10 @@ public class MainActivity extends AppCompatActivity {
         Intent i = new Intent(this, AboutActivity.class);
         startActivity(i);
     }
+
+    // Start the Dropper Activity
+    public void startActivityDropper(View view) {
+        Intent i = new Intent(this, DropperActivity.class);
+        startActivity(i);
+    }
 }
