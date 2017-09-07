@@ -4,7 +4,6 @@ import android.opengl.GLSurfaceView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.lukederrynz.android_test.R;
 import com.lukederrynz.application_Hub.OpenGL.MyGLSurfaceView;
 
 
@@ -28,7 +27,6 @@ public class DropperActivity extends AppCompatActivity {
         // Create an OpenGL surface view
         glSurfaceView = new MyGLSurfaceView(this);
         setContentView(glSurfaceView);
-
     }
 
 
