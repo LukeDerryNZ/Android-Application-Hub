@@ -31,7 +31,7 @@ _Created by_ [_**Luke Derry**_](https://www.linkedin.com/in/lukederry/)
     
   
 - ## Non-Scientific Calculator [_Developing..._]  
-  - Progress: [_~**65**%_]  
+  - Progress: [_~**60**%_]  
   - **BACKLOG**:  
     - [x] User Interface  
     - [ ] TDD approach to methods and testing  
@@ -46,6 +46,11 @@ _Created by_ [_**Luke Derry**_](https://www.linkedin.com/in/lukederry/)
     - [ ] Transition from MainMenu -> selected Activity  
     - [ ] Overhaul colour scheme  
   
+- ## OpenGLES Demo [_Developing..._]
+  - Progress: [_~**5%**_]
+  - **BACKLOG**:
+    - [ ] Establish touch events
+    - [ ] Preliminary Design
   
 ### Other Planned Activities:  
 - Shopping List  
@@ -53,6 +58,5 @@ _Created by_ [_**Luke Derry**_](https://www.linkedin.com/in/lukederry/)
 - Gallery  
 - Theme selector / Transition selector  
 - Time Management System  / Alarm  
-- Opengles Demo  
   
 [:arrow_up:](https://github.com/LukeDerryNZ/Android-Application-Hub#android-application-hub)  Back To Top
