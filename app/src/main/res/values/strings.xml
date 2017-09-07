@@ -1,10 +1,11 @@
 <resources>
-    <string name="app_name">Android-Test</string>
+    <string name="app_name">Android-Application-Hub</string>
 
     <!-- Main Menu -->
     <string name="button_StartTextToSpeech">Text To Speech</string>
     <string name="button_StartWeatherActivity">Weather</string>
     <string name="button_StartCalculator">Calculator</string>
+    <string name="button_StartDropper">Dropper</string>
     <string name="button_UNUSED">Unused</string>
 
     <!-- Text To Speech App -->
@@ -31,5 +32,8 @@
     <!-- About App -->
     <string name="About_button_LinkedIn">LinkedIn Profile</string>
     <string name="About_button_GitHub">GitHub Repository</string>
+
+    <!-- Dropper App -->
+
 
 </resources>
