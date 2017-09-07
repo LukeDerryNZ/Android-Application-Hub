@@ -3,6 +3,7 @@ package com.lukederrynz.application_Hub.OpenGL;
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
+import android.content.Context;
 import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
 import android.opengl.Matrix;
@@ -28,7 +29,7 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
     private final float[] mViewMatrix = new float[16];
     private final float[] mRotationMatrix = new float[16];
 
-    private float mAngle;
+    public volatile float mAngle;
 
     //
     @Override public void onSurfaceCreated(GL10 unused, EGLConfig config) {
@@ -54,17 +55,30 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
         // Calculate projection and view transformation
         Matrix.multiplyMM(mMVPMatrix, 0, mProjectionMatrix, 0, mViewMatrix, 0);
 
+        //***************************************
+        // TEST - Rotate square backwards to triangle at half the rate.
+        Matrix.setRotateM(mRotationMatrix, 0, -mAngle/2, 0, 0, 1.0f);
+        Matrix.multiplyMM(scratch, 0, mMVPMatrix, 0, mRotationMatrix, 0);
+        //***************************************
+        
+        //***************************************
+        // Draw square
+        square.draw(scratch);
+        //***************************************
+
         // Constant Rotation
-        long time = SystemClock.uptimeMillis() % 4000L;
-        mAngle = 0.090f * ((int)time);
+        //long time = SystemClock.uptimeMillis() % 4000L;
+        //mAngle = 0.090f * ((int)time);
         Matrix.setRotateM(mRotationMatrix, 0, mAngle, 0, 0, 1.0f);
 
         // Combine rotation matrix with projection matrix and camera view
         // NOTE: mMVPMatrix must be first!
         Matrix.multiplyMM(scratch, 0, mMVPMatrix, 0, mRotationMatrix, 0);
 
+        //***************************************
         // Draw shape using MVP Matrix
         triangle.draw(scratch);
+        //***************************************
     }
 
     //
