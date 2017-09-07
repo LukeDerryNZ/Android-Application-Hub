@@ -24,6 +24,10 @@ public class MyGLSurfaceView extends GLSurfaceView {
         setEGLContextClientVersion(2);
         // Create a renderer
         mRenderer = new MyGLRenderer();
+
+        super.setEGLConfigChooser(8, 8, 8, 8, 16, 0);
+
+
         // Set the renderer for drawing on the GLSurfaceView
         setRenderer(mRenderer);
         // Only draw when we have to
@@ -51,4 +55,5 @@ public class MyGLSurfaceView extends GLSurfaceView {
         mPreviousY = y;
         return true;
     }
+
 }
