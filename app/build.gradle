@@ -1,15 +1,20 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        config {
+        }
+    }
     compileSdkVersion 26
     buildToolsVersion "26.0.1"
     defaultConfig {
         applicationId 'com.lukederrynz.application_hub'
         minSdkVersion 14
-        targetSdkVersion 26
+        targetSdkVersion 14
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        signingConfig signingConfigs.config
     }
     buildTypes {
         release {
@@ -18,6 +23,8 @@ android {
         }
     }
     productFlavors {
+    }
+    compileOptions {
     }
 }
 
