@@ -47,10 +47,16 @@ _Created by_ [_**Luke Derry**_](https://www.linkedin.com/in/lukederry/)
     - [ ] Overhaul colour scheme  
   
 - ## OpenGLES Demo [_Developing..._]
-  - Progress: [_~**5%**_]
+  - Progress: [_~**45%**_]
   - **BACKLOG**:
-    - [ ] Establish touch events
-    - [ ] Preliminary Design
+    - [x] Establish touch events
+    - [x] Primitives[triangle, square, line]
+    - [ ] Establish Ball Emitter and Emitter Rate
+    - [x] Allow the user to create lines via touch and drag
+    - [x] Create preliminary OpenGLES 2.0 Viewport
+    - [ ] Add optional texture upon square instantiation
+    - [ ] Calculate Ball/Line collision and rebound angle and velocity
+    - [ ] Create appropriate sound upon collision using params[lineLength, velocity]
   
 ### Other Planned Activities:  
 - Shopping List  
