@@ -9,51 +9,77 @@ import java.nio.ShortBuffer;
 
 /**
  * Created by Luke on 6/09/2017.
+ * A square primitive constructed from two adjacent triangles
+ *
  */
 
-public class OpenGL_Square {
+class OpenGL_Square {
 
-    private final String vertexShaderCode =
-            "uniform mat4 uMVPMatrix;" +
-            "attribute vec4 vPosition;" +
-            "void main() {" +
-            // The matrix must be included as a modifier of gl_Position.
-            // NOTE: The uMVPMatrix must be first.
-            "   gl_Position = uMVPMatrix * vPosition;" +
-            "}";
+    private FloatBuffer vertexBuffer;
+    private ShortBuffer drawListBuffer;
+    private int mProgram;
+    private final short drawOrder[] = { 0, 1, 2, 0, 2, 3 };
+    private float color[] = {0.2f, 0.709803922f, 0.898039216f, 1.0f};
 
-    private final String fragmentShaderCode =
-            "precision mediump float;" +
-            "uniform vec4 vColor;" +
-            "void main() {" +
-            "   gl_FragColor = vColor;" +
-            "}";
-
-
-    private final FloatBuffer vertexBuffer;
-    private final ShortBuffer drawListBuffer;
-    private final int mProgram;
+    // Number of coords per vertex
+    static final int COORDS_PER_VERTEX = 3;
+    private final int vertexStride = COORDS_PER_VERTEX * 4; // 4 bytes per vertex
     private int mPositionHandle;
     private int mColorHandle;
     private int mMVPMatrixHandle;
 
-    // Number of coords per vertex
-    static final int COORDS_PER_VERTEX = 3;
-    static float squareCoords[] = {-0.5f,  0.5f, 0.0f,  // Top Left
-                                   -0.5f, -0.5f, 0.0f,  // Bottom Left
-                                    0.5f, -0.5f, 0.0f,  // Bottom Right
-                                    0.5f,  0.5f, 0.0f}; // Top Right
 
-    private short drawOrder[] = { 0, 1, 2, 0, 2, 3 };
+    private float size = 64.0f;
+    private float posX = 0f;
+    private float posY = 0f;
 
-    private final int vertexStride = COORDS_PER_VERTEX * 4; // 4 bytes per vertex
+    // Coords in counter-clockwise order
+    private float squareCoords[];
+// = {
+//        posX - hs, posY + hs, MyGLRenderer.getDepth(),  // Top Left
+//        posX - hs, posY - hs, MyGLRenderer.getDepth(),  // Bottom Left
+//        posX + hs, posY - hs, MyGLRenderer.getDepth(),  // Bottom Right
+//        posX + hs, posY + hs, MyGLRenderer.getDepth()}; // Top Right
 
-    float color[] = {1.0f, 0.0f, 0.0f, 1.0f};
+    private final String vertexShaderCode =
+        "uniform mat4 uMVPMatrix;" +
+        "attribute vec4 vPosition;" +
+        "void main() {" +
+        // The matrix must be included as a modifier of gl_Position.
+        // NOTE: The uMVPMatrix must be first.
+        "   gl_Position = uMVPMatrix * vPosition;" +
+        "}";
+
+    private final String fragmentShaderCode =
+        "precision mediump float;" +
+        "uniform vec4 vColor;" +
+        "void main() {" +
+        "   gl_FragColor = vColor;" +
+        "}";
+
 
     /**
      * Sets up the drawing object data for use in OpenGLES context
+     * @param x - float : X Axis position
+     * @param y  - float : Y Axis position
+     * @param s - float : Height and Width dimension
      */
-    public OpenGL_Square() {
+    public OpenGL_Square(float x, float y, float s) {
+
+        size = s;
+        posX = x;
+        posY = y;
+
+        init();
+    }
+
+
+    /**
+     *
+     */
+    public void init() {
+
+        setCoords();
 
         // Init vertex byte buffer
         ByteBuffer bb = ByteBuffer.allocateDirect(squareCoords.length * 4);
@@ -63,50 +89,55 @@ public class OpenGL_Square {
         vertexBuffer.position(0);
 
         // Init byte buffer for draw list ( 2 bytes per short)
-        ByteBuffer dlBuffer = ByteBuffer.allocateDirect(drawOrder.length * 2);
-        dlBuffer.order(ByteOrder.nativeOrder());
-        drawListBuffer = dlBuffer.asShortBuffer();
+        ByteBuffer dlbb = ByteBuffer.allocateDirect(drawOrder.length * 2);
+        // Use native byte order
+        dlbb.order(ByteOrder.nativeOrder());
+        drawListBuffer = dlbb.asShortBuffer();
         drawListBuffer.put(drawOrder);
         drawListBuffer.position(0);
 
-        // Prepare shaders and OpenGLES program
+        // Prepare shaders
         int vertexShader = MyGLRenderer.loadShader(GLES20.GL_VERTEX_SHADER, vertexShaderCode);
         int fragmentShader = MyGLRenderer.loadShader(GLES20.GL_FRAGMENT_SHADER, fragmentShaderCode);
 
         // Create an empty OpenGLES program
         mProgram = GLES20.glCreateProgram();
-        // Attach vertex and fragment shader to program
+        // Attach vertex and fragment shader to program and create program exe's
         GLES20.glAttachShader(mProgram, vertexShader);
         GLES20.glAttachShader(mProgram, fragmentShader);
-        // And link
         GLES20.glLinkProgram(mProgram);
     }
 
+
     /**
      * Encapsulates the OpenGLES instructions for a square
-     * @param mvpMatrix - The Model View Project Matrix in which
-     *                  to draw this shape.
+     * @param mvpMatrix - float[] : The Model View Project Matrix in which to draw this shape.
+     *
      */
     public void draw(float[] mvpMatrix) {
+
         // Add program to OpenGLES environment
         GLES20.glUseProgram(mProgram);
+
         // Get handle to vertex shader's vPosition member
         mPositionHandle = GLES20.glGetAttribLocation(mProgram, "vPosition");
         // Enable handle to triangle vertices
         GLES20.glEnableVertexAttribArray(mPositionHandle);
         // Prepare triangle coords data
-        GLES20.glVertexAttribPointer(mPositionHandle, COORDS_PER_VERTEX, GLES20.GL_FLOAT, false, vertexStride, vertexBuffer);
+        GLES20.glVertexAttribPointer(mPositionHandle, COORDS_PER_VERTEX,
+                GLES20.GL_FLOAT, false, vertexStride, vertexBuffer);
 
         // Get handle to fragment shader's vColor member
         mColorHandle = GLES20.glGetUniformLocation(mProgram, "vColor");
         // Set color for triangle
         GLES20.glUniform4fv(mColorHandle, 1, color, 0);
+
         // Get handle to square's transformation matrix
         mMVPMatrixHandle = GLES20.glGetUniformLocation(mProgram, "uMVPMatrix");
-        // TODO: IMPLEMENT CHECK IF GL ERROR //MyGLRenderer.checkGLError("glGetUniformLocation");
+        MyGLRenderer.checkGLError("glGetUniformLocation");
         // Apply the projection and view transformation
         GLES20.glUniformMatrix4fv(mMVPMatrixHandle, 1, false, mvpMatrix, 0);
-        // TODO: IMPLEMENT CHECK IF GL ERROR //MyGLRenderer.checkGLError("glGetUniformLocation");
+        MyGLRenderer.checkGLError("glGetUniformMatrix4fv");
 
         // Draw the square
         GLES20.glDrawElements(
@@ -116,4 +147,56 @@ public class OpenGL_Square {
         // Disable vertex array
         GLES20.glDisableVertexAttribArray(mPositionHandle);
     }
+
+
+    private void setCoords() {
+        float hs = size * 0.5f;
+        squareCoords = new float[]{
+                posX - hs, posY + hs, MyGLRenderer.getDepth(),  // Top Left
+                posX - hs, posY - hs, MyGLRenderer.getDepth(),  // Bottom Left
+                posX + hs, posY - hs, MyGLRenderer.getDepth(),  // Bottom Right
+                posX + hs, posY + hs, MyGLRenderer.getDepth()}; // Top Right}
+    }
+
+
+    /**
+     * Sets the square's position
+     * @param x - float : X Axis value
+     * @param y - float : Y Axis value
+     */
+    public void setPosition(float x, float y) {
+        posX = x;
+        posY = y;
+        vertexBuffer.clear();
+        drawListBuffer.clear();
+        init();
+    }
+
+    public float getPosX() {
+        return posX;
+    }
+
+    public float getPosY() {
+        return posY;
+    }
+
+    public void setPosX(float x) {
+        posX = x;
+        init();
+    }
+
+    public void setPosY(float y) {
+        posY = y;
+        init();
+    }
+
+    public float getSize() {
+        return size;
+    }
+
+    public void setSize(float s) {
+        size = s;
+        init();
+    }
+
 }
