@@ -7,11 +7,14 @@ import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
 
 /**
- * Created by Luke on 6/09/2017.
+ * Created by Luke Derry on 6/09/2017.
+ *
+ *
  */
-
 class OpenGL_Triangle {
 
+    // Number of coordinates per vertex
+    static final int COORDS_PER_VERTEX = 3;
 
     private FloatBuffer vertexBuffer;
     private final int mProgram;
@@ -21,35 +24,35 @@ class OpenGL_Triangle {
     private final int vertexCount = triangleCoords.length / COORDS_PER_VERTEX;
     private final int vertexStride = COORDS_PER_VERTEX * 4; // 4 Bytes per vertex
     float color[] = { 0.2f, 0.6f, 0.2f, 1.0f };
-    // Number of coordinates per vertex
-    static final int COORDS_PER_VERTEX = 3;
 
-    // Coords in counterclockwise order
-    static float triangleCoords[] = { 0.0f,  0.622008459f, 0.0f,  // Top
-                                     -0.5f, -0.311004243f, 0.0f,  // Bottom Left
-                                      0.5f, -0.311004243f, 0.0f}; // Bottom Right
+    // Coords in counter-clockwise order
+    static float triangleCoords[] = {
+          0.3f,  0.622008459f, MyGLRenderer.getDepth(),  // Top
+         -0.5f, -0.311004243f, MyGLRenderer.getDepth(),  // Bottom Left
+          0.5f, -0.311004243f, MyGLRenderer.getDepth()}; // Bottom Right
 
     private final String vertexShaderCode =
-                // This mat4 variable provides a hook to manipulate coords of objects
-                // that use this vertex shader
-                "uniform mat4 uMVPMatrix;" +
-                "attribute vec4 vPosition;" +
-                        "void main() {" +
-                        // The matrix must be included as a modifier of gl_Position
-                        // Multiplication ordering matters here. uMVPMatrix must be first.
-                        "   gl_Position = uMVPMatrix * vPosition;" +
-                        "}";
+        "uniform mat4 uMVPMatrix;" +
+        "attribute vec4 vPosition;" +
+        "void main() {" +
+        // The matrix must be included as a modifier of gl_Position
+        // NOTE: The uMVPMatrix must be first.
+        "   gl_Position = uMVPMatrix * vPosition;" +
+                "}";
 
     private final String fragmentShaderCode =
-            "precision mediump float;" +
-                    "uniform vec4 vColor;" +
-                    "void main() {" +
-                    "   gl_FragColor = vColor;" +
-                    "}";
+        "precision mediump float;" +
+        "uniform vec4 vColor;" +
+        "void main() {" +
+        "   gl_FragColor = vColor;" +
+        "}";
 
-    // Sets up the drawing object data for use in OpenGLES context
+    /**
+     *  Sets up the drawing object data for use in OpenGLES context
+     */
     OpenGL_Triangle() {
 
+        // Prepare shaders
         int vertexShader = MyGLRenderer.loadShader(GLES20.GL_VERTEX_SHADER, vertexShaderCode);
         int fragmentShader = MyGLRenderer.loadShader(GLES20.GL_FRAGMENT_SHADER, fragmentShaderCode);
 
@@ -74,10 +77,12 @@ class OpenGL_Triangle {
         vertexBuffer.position(0);
     }
 
-    // Draw method for triangle
-    // @Params - calculated transformation matrix
-    //
+    /** Draw method for triangle
+     *
+     * @param mvpMatrix - Calculated transformation matrix
+     */
     void draw(float[] mvpMatrix) {
+
         // Add program to OpenGLES
         GLES20.glUseProgram(mProgram);
 
