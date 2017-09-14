@@ -16,13 +16,17 @@ _Created by_ [_**Luke Derry**_](https://www.linkedin.com/in/lukederry/)
 
 - ## Main Menu [_Developing..._]  
   - Progress: [_~**75**%_]  
-  - **BACKLOG**:  
-    - [ ] Remaining buttons require activities 
-    - [ ] Dropdown About screen overlay
+  - **Backlog**:  
+    - [x] 3x3 grid working correctly for all orientations
+    - [x] Set this activity as root activity
+    - [x] Buttons initiate new activity
+    - [x] Ensure backwards compatibility by using android.support.v7.widget.GridLayout and linearLayout
+    - [ ] Remaining buttons require activities  
+    - [ ] Dropdown About screen overlay  
     
 - ## Weather [_OnHold..._]  
   - Progress: [_~**40**%_]  
-  - **BACKLOG**:  
+  - **Backlog**:  
     - [ ] User text-entry for location  
     - [x] Allow the user to retrieve correct weather info  
     - [x] Correctly detect user's location  
@@ -32,37 +36,48 @@ _Created by_ [_**Luke Derry**_](https://www.linkedin.com/in/lukederry/)
   
 - ## Non-Scientific Calculator [_Developing..._]  
   - Progress: [_~**60**%_]  
-  - **BACKLOG**:  
+  - **Backlog**:  
     - [x] User Interface  
+    - [x] Implement stack-based equation logic  
+    - [x] Allow for continous equations by compounding result as new constant  
     - [ ] TDD approach to methods and testing  
     - [ ] Refactor event listeners for all buttons  
+    - [x] Clear button resets equation stack  
     - [ ] Test arithmetic  
+    - [ ] Limit digit input  
+    - [ ] Round equation results to ~5dp (TBD)  
   
   
 - ## User Interface [_Developing..._]  
-  - Progress: [_~**50**%_]  
-  - **BACKLOG**:  
+  - Progress: [_~**30**%_]  
+  - **Backlog**:  
+    - [x] Learn how to use a Global color scheme controlled via Android Studio  
+    - [x] UI elemental cohesion across all apps  
     - [ ] Establish Visual / Audio feedback for user interaction  
-    - [ ] Transition from MainMenu -> selected Activity  
-    - [ ] Overhaul colour scheme  
+    - [ ] Implement a Transition from MainMenu -> selected Activity  
+    - [ ] Decide on a color scheme!  
+    - [ ] Menu bar top of screen for global app navigation  
+    - [ ] Custom button background including button states  
   
-- ## OpenGLES Demo [_Developing..._]
-  - Progress: [_~**45%**_]
-  - **BACKLOG**:
-    - [x] Establish touch events
-    - [x] Primitives[triangle, square, line]
-    - [ ] Establish Ball Emitter and Emitter Rate
-    - [x] Allow the user to create lines via touch and drag
-    - [x] Create preliminary OpenGLES 2.0 Viewport
-    - [ ] Add optional texture upon square instantiation
-    - [ ] Calculate Ball/Line collision and rebound angle and velocity
-    - [ ] Create appropriate sound upon collision using params[lineLength, velocity]
+- ## OpenGLES Demo [_Developing..._]  
+  - Progress: [_~**45%**_]  
+  - **Backlog**:  
+    - [x] Establish touch events  
+    - [x] Primitives[triangle, square, line]  
+    - [x] Establish Ball Emitter and Emitter Rate  
+    - [x] Allow the user to create lines via touch and drag  
+    - [x] Create preliminary OpenGLES 2.0 Viewport  
+    - [ ] Add optional texture upon square instantiation  
+    - [ ] Calculate Ball/Line collision and rebound angle and velocity  
+    - [ ] Create appropriate sound upon collision using params[lineLength, velocity]  
   
+    
 ### Other Planned Activities:  
 - Shopping List  
 - Planning Poker  
-- Gallery  
+- Image Gallery  
 - Theme selector / Transition selector  
 - Time Management System  / Alarm  
+  
   
 [:arrow_up:](https://github.com/LukeDerryNZ/Android-Application-Hub#android-application-hub)  Back To Top
