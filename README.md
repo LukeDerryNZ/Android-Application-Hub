@@ -15,7 +15,7 @@ _Created by_ [_**Luke Derry**_](https://www.linkedin.com/in/lukederry/)
 
 # Design Doc:  
 
-- ## Main Menu [_Developing..._]  
+- ## Main Menu [_Developing..._]  [:arrow_up:](https://github.com/LukeDerryNZ/Android-Application-Hub/blob/master/README.md#android-application-hub)
   - Progress: [_~**75**%_]  
   - **Backlog**:  
     - [x] 3x3 grid working correctly for all orientations
@@ -25,7 +25,7 @@ _Created by_ [_**Luke Derry**_](https://www.linkedin.com/in/lukederry/)
     - [ ] Remaining buttons require activities  
     - [ ] Dropdown About screen overlay  
     
-- ## Weather [_OnHold..._]  
+- ## Weather [_OnHold..._]  [:arrow_up:](https://github.com/LukeDerryNZ/Android-Application-Hub/blob/master/README.md#android-application-hub)
   - Progress: [_~**40**%_]  
   - **Backlog**:  
     - [ ] User text-entry for location  
@@ -35,7 +35,7 @@ _Created by_ [_**Luke Derry**_](https://www.linkedin.com/in/lukederry/)
     - [ ] Visible feedback if weather retrieval has failed  
     
   
-- ## Non-Scientific Calculator [_Developing..._]  
+- ## Non-Scientific Calculator [_Developing..._]  [:arrow_up:](https://github.com/LukeDerryNZ/Android-Application-Hub/blob/master/README.md#android-application-hub)
   - Progress: [_~**60**%_]  
   - **Backlog**:  
     - [x] User Interface  
@@ -49,7 +49,7 @@ _Created by_ [_**Luke Derry**_](https://www.linkedin.com/in/lukederry/)
     - [ ] Round equation results to ~5dp (TBD)  
   
   
-- ## User Interface [_Developing..._]  
+- ## User Interface [_Developing..._]  [:arrow_up:](https://github.com/LukeDerryNZ/Android-Application-Hub/blob/master/README.md#android-application-hub)
   - Progress: [_~**30**%_]  
   - **Backlog**:  
     - [x] Learn how to use a Global color scheme controlled via Android Studio  
@@ -60,7 +60,7 @@ _Created by_ [_**Luke Derry**_](https://www.linkedin.com/in/lukederry/)
     - [ ] Menu bar top of screen for global app navigation  
     - [ ] Custom button background including button states  
   
-- ## OpenGLES Demo [_Developing..._]  
+- ## OpenGLES Demo [_Developing..._]  [:arrow_up:](https://github.com/LukeDerryNZ/Android-Application-Hub/blob/master/README.md#android-application-hub)
   - Progress: [_~**45%**_]  
   - **Backlog**:  
     - [x] Establish touch events  
