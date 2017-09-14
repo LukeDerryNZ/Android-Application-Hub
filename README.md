@@ -81,5 +81,5 @@ _Created by_ [_**Luke Derry**_](https://www.linkedin.com/in/lukederry/)
 - Time Management System  / Alarm  
   
   
-[:arrow_up:] Back To Top(https://github.com/LukeDerryNZ/Android-Application-Hub/blob/master/README.md#android-application-hub)  
+[:arrow_up: Back To Top](https://github.com/LukeDerryNZ/Android-Application-Hub/blob/master/README.md#android-application-hub)  
 
