@@ -4,8 +4,6 @@ _A Collection of Micro Applications_
   
 _Created by_ [_**Luke Derry**_](https://www.linkedin.com/in/lukederry/)  
 
-[_**GitHub Pages Site**_](https://lukederrynz.github.io/Android-Application-Hub/)
-
 ###### Links:  
  - [_Main Menu_](https://github.com/LukeDerryNZ/Android-Application-Hub/blob/master/README.md#main-menu-developing)  
  - [_Weather Application_](https://github.com/LukeDerryNZ/Android-Application-Hub/blob/master/README.md#weather-onhold)  
