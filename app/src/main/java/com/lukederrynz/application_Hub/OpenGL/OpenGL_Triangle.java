@@ -8,7 +8,7 @@ import java.nio.FloatBuffer;
 
 /**
  * Created by Luke Derry on 6/09/2017.
- *
+ * A triangle primitive consisting of three vertices
  *
  */
 class OpenGL_Triangle {
@@ -48,7 +48,8 @@ class OpenGL_Triangle {
         "}";
 
     /**
-     *  Sets up the drawing object data for use in OpenGLES context
+     *  Sets up the drawing object data for use in OpenGLES context.
+     *
      */
     OpenGL_Triangle() {
 
@@ -77,7 +78,7 @@ class OpenGL_Triangle {
         vertexBuffer.position(0);
     }
 
-    /** Draw method for triangle
+    /** Draw method for triangle.
      *
      * @param mvpMatrix - Calculated transformation matrix
      */

@@ -10,11 +10,13 @@ import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import static android.content.ContentValues.TAG;
 
 /**
- * Created by Luke on 6/09/2017.
+ * Created by Luke Derry 6/09/2017.
  * Provides drawing instructions for a GLSurfaceView object. This class
  * must override the OpenGL ES drawing lifecycle methods:
  *
@@ -34,17 +36,28 @@ class MyGLRenderer implements GLSurfaceView.Renderer {
     // Angle modified via MyGLSurfaceView.onTouchEvent
     //private volatile float mAngle;
 
-    // Our static Z axis value (Depth)
-    private static float depth = 0.1f;
+    public static float gravity = -0.1f;
 
-    private float gravity = -3f;
+    // View
+    private static int OpenGL_Width = 0;
+    private static int OpenGL_Height = 0;
+    private static float depthZ = 0.1f; // Our Z Axis value for all vertices
 
+    // Lines
     public static List<OpenGL_Line> Lines;
-    public OpenGL_Line newLine;
+    OpenGL_Line newLine;
+
+    // Balls
+    public static List<Ball> Balls;
+    public static Vector3f BallEmitter = new Vector3f(100f, 1000f, depthZ);
+    public static int EmitterRateMillis = 2000;
+    public static float BallSize = 16.0f;
+    public Timer timer;
 
 
     /**
      * Called once upon surface creation.
+     *
      * @param unused - GL10 : Unused
      * @param config - EGLConfig : Config data
      */
@@ -53,54 +66,108 @@ class MyGLRenderer implements GLSurfaceView.Renderer {
         GLES20.glClearColor(0.2f, 0.2f, 0.4f, 1.0f);
 
         // Instantiate scene primitives
-        triangle = new OpenGL_Triangle();
-        square = new OpenGL_Square( 100f, 1000f, 8f);
+        //triangle = new OpenGL_Triangle();
+        //square = new OpenGL_Square( 100f, 1000f, 8f);
 
         // Instantiate our lines
         Lines = new ArrayList<>();
         newLine = new OpenGL_Line();
-        newLine.setColor(1f,0f,0f,1f);
+        newLine.setColor(1f, 0f, 0f, 1f);
+
+        // Instantiate Balls
+        Balls = new ArrayList<>();
+
+        timer = new Timer();
+        timer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                Balls.add(new Ball());
+            }
+        }, 0, EmitterRateMillis);
     }
 
 
     /**
      * Called when the renderer is ready to process a frame.
+     *
      * @param unused - GL10 : Unused
      */
     @Override public void onDrawFrame(GL10 unused) {
 
-        processBalls();
-
         // Redraw background color
         GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT | GLES20.GL_DEPTH_BUFFER_BIT);
 
-        //***************************************
-        // Draw square
-        square.draw(mMVPMatrix);
-        //***************************************
+        processBalls();
+        processLines();
+    }
 
-        //***************************************
-        // DRAW LINES
+
+    /**
+     * Process physics for all Balls and Draw.
+     * TODO: Segregate this method into 3 distinct methods:
+     *       Physics / Collisions / Drawing
+     */
+    private void processBalls() {
+
+        List<Integer> removalList = new ArrayList<>();
+
+        for (int j=0; j<Lines.size(); j++) {
+
+            for (int i=0; i<Balls.size(); i++) {
+
+                // Remove if outside of screen bounds
+                if (isOOB(Balls.get(i).getSquare().getPosition())) {
+                    // Add index to removalList
+                    removalList.add(i);
+                    continue;
+                }
+
+                float posx = Balls.get(i).getSquare().getPosX();
+                float posy = Balls.get(i).getSquare().getPosY();
+
+                // Apply gravity
+                Balls.get(i).addForceY(gravity);
+
+                // Apply force
+                Balls.get(i).tick();
+                //Balls.get(i).getSquare().setPosX(posx + Balls.get(i).getForceX());
+                //Balls.get(i).getSquare().setPosY(posy + Balls.get(i).getForceY());
+
+
+                // Finally draw balls
+                Balls.get(i).getSquare().draw(mMVPMatrix);
+            }
+        }
+
+        // Remove Balls
+        for (int k=0; k<removalList.size(); k++) {
+            Balls.remove(removalList.get(k));
+        }
+    }
+
+
+    /**
+     * Process all Lines and Draw.
+     *
+     */
+    private void processLines() {
         // Draw the new line currently being dragged
         newLine.draw(mMVPMatrix);
 
-        for (int i = 0; i < Lines.size(); i++) {
-            Lines.get(i).draw(mMVPMatrix);
+        for (OpenGL_Line l : Lines) {
+            l.draw(mMVPMatrix);
         }
-        //***************************************
-
-        //***************************************
-        // Draw shape using MVP Matrix
-        //triangle.draw(scratch);
-        //***************************************
     }
 
 
-
-    private void processBalls() {
-        square.setPosY(square.getPosY() + gravity);
+    /**
+     * Helper function, returns true if Vector3f is out of screen bounds.
+     *
+     * @return - boolean : true if OOB, else false
+     */
+    private boolean isOOB(Vector3f v) {
+        return v.x < 0 || v.x > OpenGL_Width || v.y < 0 || v.y > OpenGL_Height;
     }
-
 
     /**
      * Called once upon surface changed - such as phone rotation.
@@ -110,6 +177,9 @@ class MyGLRenderer implements GLSurfaceView.Renderer {
      * @param height - Int : denoting the height of the screen in pixels
      */
     public void onSurfaceChanged(GL10 unused, int width, int height) {
+
+        OpenGL_Width = width;
+        OpenGL_Height = height;
 
         GLES20.glViewport(0, 0, width, height);
 
@@ -161,7 +231,8 @@ class MyGLRenderer implements GLSurfaceView.Renderer {
 
 
     /**
-     * Set the Current Line as a new line on touch(x,y)
+     * Set the Current Line as a new line on touch(x,y).
+     *
      * @param x - float : X axis value
      * @param y - float : Y axis value
      */
@@ -172,7 +243,8 @@ class MyGLRenderer implements GLSurfaceView.Renderer {
 
 
     /**
-     * Store a new line in our Lines list
+     * Store a new line in our Lines list.
+     *
      */
     public void storeNewLine() {
         OpenGL_Line line = new OpenGL_Line();
@@ -183,11 +255,12 @@ class MyGLRenderer implements GLSurfaceView.Renderer {
 
 
     /**
-     * Get the Z axis value(depth)
+     * Get the Z axis value(depth).
+     *
      * @return - float : depth
      */
     public static float getDepth() {
-        return depth;
+        return depthZ;
     }
 
 }

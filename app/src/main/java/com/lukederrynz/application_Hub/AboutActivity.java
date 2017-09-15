@@ -9,6 +9,13 @@ import android.widget.Button;
 
 import com.lukederrynz.android_test.R;
 
+
+/**
+ * Created by Luke Derry on 1/09/2017
+ * Provides links to my github and linked in profiles.
+ * Shameless self-plug ftw!
+ *
+ */
 public class AboutActivity extends AppCompatActivity {
 
     @Override
@@ -19,7 +26,12 @@ public class AboutActivity extends AppCompatActivity {
         initializeViews();
     }
 
-    // Init buttons and url links
+
+    /**
+     * Initialize buttons and url links.
+     * Sets up onClick listeners for buttons.
+     *
+     */
     private void initializeViews() {
         Button gitHub = (Button)findViewById(R.id.About_button_GitHub);
         Button linkedIn = (Button)findViewById(R.id.About_button_LinkedIn);
@@ -37,7 +49,12 @@ public class AboutActivity extends AppCompatActivity {
         });
     }
 
-    //
+
+    /**
+     * Wrapper function for opening a url and starting it's intent.
+     *
+     * @param s - String : The URL
+     */
     private void openURL(String s) {
         Uri uri = Uri.parse(s);
         Intent intent = new Intent(Intent.ACTION_VIEW, uri);

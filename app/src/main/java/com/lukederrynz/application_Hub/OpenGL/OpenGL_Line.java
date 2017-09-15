@@ -7,8 +7,8 @@ import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
 
 /**
- * Created by Luke on 12/09/2017.
- *
+ * Created by Luke Derry 12/09/2017.
+ * A Line primitive consisting of two vertices (surprising huh)
  *
  */
 public class OpenGL_Line {
@@ -73,7 +73,8 @@ public class OpenGL_Line {
 
 
     /**
-     * Draw functionality for our Line
+     * Draw functionality for our Line.
+     *
      * @param mvpMatrix - float[] Our Model View Projection Matrix
      */
     public void draw(float[] mvpMatrix) {
@@ -103,10 +104,13 @@ public class OpenGL_Line {
         GLES20.glDisableVertexAttribArray(mPositionHandle);
     }
 
-    //region PUBLIC ACCESSORS
+    //region PUBLIC ACCESSORS //////////////////////////////////////////////////////////////////
 
     /**
-     * Set the Start Vertex values
+     * Set the Start Vertex values.
+     *
+     * TODO: Overload with Vector3f param?
+     *
      * @param x - float : X axis value
      * @param y - float : Y axis value
      */
@@ -118,7 +122,10 @@ public class OpenGL_Line {
 
 
     /**
-     * Set the End Vertex values
+     * Set the End Vertex values.
+     *
+     * TODO: Overload with vector3f param?
+     *
      * @param x - float : X axis Value
      * @param y - float : Y axis Value
      */
@@ -130,25 +137,28 @@ public class OpenGL_Line {
 
 
     /**
-     * Gets all 3 axis values for the Start Vertex
+     * Gets all 3 axis values for the Start Vertex.
+     *
      * @return - float[3] : Array of values [x, y, z]
      */
-    public float[] getStartVerts() {
-        return new float[] {lineCoords[0], lineCoords[1], lineCoords[2]};
+    public Vector3f getStartVerts() {
+        return new Vector3f(lineCoords[0], lineCoords[1], lineCoords[2]);
     }
 
 
     /**
-     * Gets all 3 axis values for the End Vertex
+     * Gets all 3 axis values for the End Vertex.
+     *
      * @return - float[3] : Array of values [x, y, z]
      */
-    public float[] getEndVerts() {
-        return new float[] {lineCoords[3], lineCoords[4], lineCoords[5]};
+    public Vector3f getEndVerts() {
+        return new Vector3f(lineCoords[3], lineCoords[4], lineCoords[5]);
     }
 
 
     /**
-     * Sets the Color Values for the Line
+     * Sets the Color Values for the Line.
+     *
      * @param r - float : Red component
      * @param g - float : Green component
      * @param b - float : Blue component
@@ -163,6 +173,36 @@ public class OpenGL_Line {
         color[1] = g;
         color[2] = b;
         color[3] = a;
+    }
+
+
+    /**
+     * Get the length of the line
+     * @return - float : Length
+     */
+    public float getLength() {
+        Vector3f sv = getStartVerts();
+        Vector3f ev = getEndVerts();
+        Vector3f v = new Vector3f(sv.x-ev.x, sv.y-ev.y, sv.z-ev.z);
+        float len = (float)Math.sqrt(v.x*v.x + v.y*v.y + v.z*v.z);
+        return len;
+    }
+
+
+    /**
+     * Check is input vector is inside line Axis-Aligned Bounding Box.
+     *
+     * @param v - Vector3f : Input Vector
+     * @return - boolean : Return true if point is within AABB
+     */
+    public boolean insideAABB(Vector3f v) {
+
+        float minX = Math.min(getStartVerts().x, getEndVerts().x);
+        float maxX = Math.max(getStartVerts().x, getEndVerts().x);
+        float minY = Math.min(getStartVerts().y, getEndVerts().y);
+        float maxY = Math.max(getStartVerts().y, getEndVerts().y);
+
+        return !(v.x < minX || v.x > maxX || v.y < minY || v.y > maxY);
     }
 
     //endregion

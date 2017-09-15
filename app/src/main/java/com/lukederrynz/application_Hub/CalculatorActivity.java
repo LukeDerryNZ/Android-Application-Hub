@@ -10,14 +10,27 @@ import android.widget.Toast;
 
 import com.lukederrynz.android_test.R;
 
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.util.ArrayDeque;
 import java.util.Deque;
 
+
+/**
+ * Created by Luke Derry on ‎Friday, ‎1 ‎September ‎2017
+ * Non-Scientific Calculator Application.
+ * Supports:
+ * - Multiplication/Division/Addition/Subtraction
+ * - Clear function
+ *
+ */
 public class CalculatorActivity extends AppCompatActivity {
 
     private TextView textView;
     private Calculator calculator;
-    private Deque<String> equationStack;
+
+    // Our Equation deque
+    private Deque<String> equationDeque;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,34 +38,46 @@ public class CalculatorActivity extends AppCompatActivity {
         setContentView(R.layout.activity_calculator);
 
         calculator = new Calculator();
-        equationStack = new ArrayDeque<>();
+        equationDeque = new ArrayDeque<>();
 
         initializeControls();
     }
 
-    // Custom String Param Listener
+
+    /**
+     * Initialize all out UI Elements.
+     *
+     */
+    private void initializeControls() {
+
+        textView = (TextView) findViewById(R.id.Calculator_textView);
+        textView.setText("");
+
+        initNumberGrid();
+        initOperatorGrid();
+    }
+
+
+    /**
+     * Custom String Param Listener.
+     * Provide a String param for our onClick Listeners.
+     *
+     */
     private class myListener implements View.OnClickListener {
         String value;
         private myListener(String s) { value = s; }
         @Override public void onClick(View v) {}
     }
 
-    //
-    private void initializeControls() {
 
-        textView = (TextView) findViewById(R.id.Calculator_textView);
-        textView.setText("");
-
-        initNumGrid();
-        initOpGrid();
-    }
-
-
-    // Initialize number grid and listeners
-    private void initNumGrid() {
+    /**
+     * Initialize number grid and listeners.
+     *
+     */
+    private void initNumberGrid() {
 
         // Create number button events
-        // Using android.support.v7.widget.GridLayout for
+        // Using android.support.v7.widget.GridLayout
         GridLayout numGridLayout = (GridLayout)findViewById(R.id.Calculator_numbersGridLayout);
         for(int i=0; i<numGridLayout.getChildCount(); i++) {
             // Cache button
@@ -61,15 +86,16 @@ public class CalculatorActivity extends AppCompatActivity {
             tempButton.setOnClickListener(new myListener(tempButton.getText().toString()) {
                 @Override public void onClick(View v) {
                     if (this.value.equals("=")) {
-                        switch (equationStack.size()) {
+
+                        switch (equationDeque.size()) {
                             case 2:
                                 // If textView is not empty
                                 if (!isTextViewEmpty()) {
-                                    equationStack.push(getValueAsString());
+                                    equationDeque.push(getValueAsString());
                                 }
                             case 3:
                                 textView.setText(String.valueOf(calcEquation()));
-                                equationStack.clear();
+                                equationDeque.clear();
                         }
                     } else {
                         // Check for decimal
@@ -83,8 +109,13 @@ public class CalculatorActivity extends AppCompatActivity {
         }
     }
 
-    // Initialize operator grid and listeners
-    private void initOpGrid() {
+
+    /**
+     * Initialize operator grid and listeners.
+     *
+     * TODO: Requires IMMENSE refactoring
+     */
+    private void initOperatorGrid() {
         // Create operator button events
         GridLayout operatorGridLayout = (GridLayout) findViewById(R.id.Calculator_operatorsGridLayout);
         for(int i=0; i<operatorGridLayout.getChildCount(); i++) {
@@ -102,28 +133,29 @@ public class CalculatorActivity extends AppCompatActivity {
                         return;
                     }
 
-                    switch (equationStack.size()) {
+                    // Depending on the deque size we follow different logic
+                    switch (equationDeque.size()) {
                         case 0:
                             // Push textView val
-                            equationStack.push(getValueAsString());
+                            equationDeque.push(getValueAsString());
                             // And operator
-                            equationStack.push(this.value);
+                            equationDeque.push(this.value);
                             cleartextView();
                             break;
 
                         case 1:
-                            Toast.makeText(CalculatorActivity.this, "ERROR:STACK SIZE=1", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(CalculatorActivity.this, "ERROR:DEQUE SIZE=1", Toast.LENGTH_SHORT).show();
                             break;
 
                         case 2:
                             // If peek is operator, replace operator - this resolves multiple operators issue
-                            if ( isOperator(equationStack.peek()) ) {
-                                equationStack.pop();
-                                equationStack.push(this.value);
+                            if ( isOperator(equationDeque.peek()) ) {
+                                equationDeque.pop();
+                                equationDeque.push(this.value);
                             }
 
-                            // Push value to stack
-                            equationStack.push(getValueAsString());
+                            // Push value to deque
+                            equationDeque.push(getValueAsString());
 
                             // And clear textView
                             cleartextView();
@@ -132,48 +164,53 @@ public class CalculatorActivity extends AppCompatActivity {
 
                         case 3:
                             // Process the first equation
-                            double v2 = Double.valueOf(equationStack.pop());
-                            String op = equationStack.pop();
-                            double v1 = Double.valueOf(equationStack.pop());
+                            double v2 = Double.valueOf(equationDeque.pop());
+                            String op = equationDeque.pop();
+                            double v1 = Double.valueOf(equationDeque.pop());
 
-                            // Calculate equation and push to stack
+                            // Calculate equation and push to deque
                             switch(op) {
                                 case "+":
-                                    equationStack.push( String.valueOf(calculator.new AddOperation().execute(v1, v2)));
+                                    equationDeque.push( String.valueOf(calculator.new AddOperation().execute(v1, v2)));
                                     break;
                                 case "-":
-                                    equationStack.push( String.valueOf(calculator.new SubtractOperation().execute(v1, v2)));
+                                    equationDeque.push( String.valueOf(calculator.new SubtractOperation().execute(v1, v2)));
                                     break;
                                 case "X":
-                                    equationStack.push( String.valueOf(calculator.new MultiplyOperation().execute(v1, v2)));
+                                    equationDeque.push( String.valueOf(calculator.new MultiplyOperation().execute(v1, v2)));
                                     break;
                                 case "/":
-                                    equationStack.push( String.valueOf(calculator.new DivideOperation().execute(v1, v2)));
+                                    equationDeque.push( String.valueOf(calculator.new DivideOperation().execute(v1, v2)));
                                     break;
                                 default:
                                     Toast.makeText(CalculatorActivity.this, "Invalid Operator", Toast.LENGTH_SHORT).show();
                                     return;
                             }
                             // Finally add operator
-                            equationStack.push(this.value);
+                            equationDeque.push(this.value);
                     }
                 }
             });
         }
     }
 
-    // Calculate valueOne Operator valueTwo
-    // Note that NO other equation format is compatible
+
+    /**
+     * Calculate (valueOne Operator valueTwo).
+     * Note that NO other equation format is compatible.
+     *
+     * @return - double : The equation result
+     */
     private double calcEquation() {
 
         cleartextView();
         // Process the first equation
-        double v2 = Double.valueOf(equationStack.pop());
-        String op = equationStack.pop();
-        double v1 = Double.valueOf(equationStack.pop());
+        double v2 = Double.valueOf(equationDeque.pop());
+        String op = equationDeque.pop();
+        double v1 = Double.valueOf(equationDeque.pop());
         double result = 0.0;
 
-        // Calculate equation and push to stack
+        // Calculate equation and push to deque
         switch(op) {
             case "+":
                 result = calculator.new AddOperation().execute(v1, v2);
@@ -191,35 +228,88 @@ public class CalculatorActivity extends AppCompatActivity {
                 Toast.makeText(CalculatorActivity.this, "Invalid Operator", Toast.LENGTH_SHORT).show();
                 break;
         }
-        return result;
+        return round(result);
     }
 
+
+    /**
+     * Round the Double to 4DP.
+     *
+     * @param d - double : Input Double
+     * @return - double : The rounded result
+     */
+    private double round(double d) {
+        DecimalFormat df = new DecimalFormat("#.####");
+        df.setRoundingMode(RoundingMode.CEILING);
+
+        return (Double.valueOf(df.format(d)));
+    }
+
+
+    /**
+     * Reads the textView as a string.
+     *
+     * @return - String : String result
+     */
     private String getValueAsString() {
         return textView.getText().toString();
     }
 
+
+    /**
+     * Determines if the input string is one of our operators.
+     *
+     * @param s - String : Input string
+     * @return - boolean : true if s in (=,+,X,/,-)
+     */
     private boolean isOperator(String s) {
-        return (s.equals("=") || s.equals("+") || s.equals("X") || s.equals("/"));
+        return (s.equals("=") || s.equals("+") || s.equals("X") || s.equals("/") || s.equals("-"));
     }
 
-    // Check null textView String. Return true if empty
+
+    /**
+     * Check null textView String. Return true if empty.
+     * Converts to a string first.
+     *
+     * @return - boolean : True if textView is empty
+     */
     private boolean isTextViewEmpty() {
         return textView.getText().toString().isEmpty();
     }
 
-    // Clear textView
+
+    /**
+     * Clears the textView element.
+     * Sets it to '""'.
+     *
+     */
     private void cleartextView() {
         textView.setText("");
     }
 
-    // Clear all
+
+    /**
+     * Clears the textView and equation deque.
+     *
+     */
     private void clearAll() {
         cleartextView();
-        equationStack.clear();
+        equationDeque.clear();
     }
 
-    // Enter number into textView
+
+    /**
+     * Appends the provided string into textView.
+     *
+     * @param numStr
+     */
     private void enterNumber(String numStr) {
+        // Sanity check : The param should really be a char
+        // TODO: Implement char for operators and numbers
+        if (numStr.length() != 1) {
+            Toast.makeText(this, "INVALID numStr: CalculatorActivity:enterNumber()", Toast.LENGTH_SHORT).show();
+            return;
+        }
         textView.append(numStr);
     }
 

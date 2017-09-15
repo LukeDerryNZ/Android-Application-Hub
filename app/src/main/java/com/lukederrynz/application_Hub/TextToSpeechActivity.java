@@ -19,6 +19,12 @@ import com.lukederrynz.android_test.R;
 
 import java.util.Locale;
 
+/**
+ * Created by Luke Derry on 23/08/2017
+ *
+ * Provides a basic Test To Speech application.
+ * Future additions will include Speech To Text functionality.
+ */
 public class TextToSpeechActivity extends AppCompatActivity {
 
     private EditText editText;
@@ -38,7 +44,10 @@ public class TextToSpeechActivity extends AppCompatActivity {
         initListeners();
     }
 
-    // Init Text to speech engine
+    /**
+     * Initialize Text to speech engine.
+     *
+     */
     private void initTTS() {
         TTS = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
             @Override public void onInit(int status) {
@@ -53,7 +62,11 @@ public class TextToSpeechActivity extends AppCompatActivity {
         });
     }
 
-    // Init UI
+
+    /**
+     * Initialize our UI.
+     *
+     */
     private void initControls() {
 
         editText = (EditText)findViewById(R.id.TTS_editText);
@@ -68,9 +81,13 @@ public class TextToSpeechActivity extends AppCompatActivity {
         Drawable d = editText.getBackground();
         d.setColorFilter(Color.GRAY, PorterDuff.Mode.SRC_ATOP);
         editText.setBackground(d);
-
     }
 
+
+    /**
+     * Initialize our Listeners.
+     *
+     */
     private void initListeners() {
         // Speak Listener
         button_Speak.setOnClickListener(new View.OnClickListener() {
@@ -90,9 +107,11 @@ public class TextToSpeechActivity extends AppCompatActivity {
                 // Display the message spoken
                 Toast.makeText(getApplicationContext(), toSpeak, Toast.LENGTH_SHORT).show();
 
+                // Set our vars from UI
                 TTS.setPitch(pitch);
                 TTS.setSpeechRate(speechRate);
 
+                // Branch depending on API level
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     TTS.speak(toSpeak, TextToSpeech.QUEUE_FLUSH, null, null);
                 } else {
@@ -121,19 +140,31 @@ public class TextToSpeechActivity extends AppCompatActivity {
         });
     }
 
-    // Called when another activity takes focus.
+
+    /**
+     * Called when another activity takes focus.
+     *
+     */
     @Override public void onPause() {
         shutDownTTS();
         super.onPause();
     }
 
-    // Called just before activity is destroyed.
+
+    /**
+     * Called just before activity is destroyed.
+     *
+     */
     @Override public void onDestroy() {
         shutDownTTS();
         super.onDestroy();
     }
 
-    // Shut down text to speech engine
+
+    /**
+     * Shut down text to speech engine.
+     *
+     */
     private void shutDownTTS() {
         if (TTS != null) {
             TTS.stop();

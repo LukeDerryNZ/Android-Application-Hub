@@ -8,6 +8,11 @@ import com.lukederrynz.android_test.R;
 import com.lukederrynz.application_Hub.OpenGL.MyGLSurfaceView;
 
 
+/**
+ * Created by Luke Derry on ‎Friday, ‎6 ‎September ‎2017
+ * Provides a simple OpenGLES 2.0 application.
+ *
+ */
 public class DropperActivity extends AppCompatActivity {
 
     public GLSurfaceView glSurfaceView;
@@ -19,12 +24,12 @@ public class DropperActivity extends AppCompatActivity {
         initOpenGL();
 
         setContentView(glSurfaceView);
-
     }
 
 
     /**
-     * Initialize OpenGLES View
+     * Initialize OpenGLES View.
+     *
      */
     private void initOpenGL() {
 
@@ -34,12 +39,20 @@ public class DropperActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * OnPause.
+     *
+     */
     @Override protected void onPause() {
         super.onPause();
         glSurfaceView.onPause();
     }
 
 
+    /**
+     * OnResume.
+     *
+     */
     @Override protected void onResume() {
         super.onResume();
         glSurfaceView.onResume();

@@ -35,11 +35,7 @@ class OpenGL_Square {
 
     // Coords in counter-clockwise order
     private float squareCoords[];
-// = {
-//        posX - hs, posY + hs, MyGLRenderer.getDepth(),  // Top Left
-//        posX - hs, posY - hs, MyGLRenderer.getDepth(),  // Bottom Left
-//        posX + hs, posY - hs, MyGLRenderer.getDepth(),  // Bottom Right
-//        posX + hs, posY + hs, MyGLRenderer.getDepth()}; // Top Right
+
 
     private final String vertexShaderCode =
         "uniform mat4 uMVPMatrix;" +
@@ -59,7 +55,8 @@ class OpenGL_Square {
 
 
     /**
-     * Sets up the drawing object data for use in OpenGLES context
+     * Sets up the drawing object data for use in OpenGLES context.
+     *
      * @param x - float : X Axis position
      * @param y  - float : Y Axis position
      * @param s - float : Height and Width dimension
@@ -75,6 +72,7 @@ class OpenGL_Square {
 
 
     /**
+     * Initialize Coordinate buffers, OpenGLES vars.
      *
      */
     public void init() {
@@ -110,9 +108,9 @@ class OpenGL_Square {
 
 
     /**
-     * Encapsulates the OpenGLES instructions for a square
-     * @param mvpMatrix - float[] : The Model View Project Matrix in which to draw this shape.
+     * Encapsulates the OpenGLES instructions for a square.
      *
+     * @param mvpMatrix - float[] : The Model View Project Matrix in which to draw this shape.
      */
     public void draw(float[] mvpMatrix) {
 
@@ -149,6 +147,10 @@ class OpenGL_Square {
     }
 
 
+    /**
+     * Sets this square's coordinates.
+     *
+     */
     private void setCoords() {
         float hs = size * 0.5f;
         squareCoords = new float[]{
@@ -160,40 +162,91 @@ class OpenGL_Square {
 
 
     /**
-     * Sets the square's position
+     * Sets the square's position.
+     * Clears the buffers.
+     * Calls setCoords().
+     *
      * @param x - float : X Axis value
      * @param y - float : Y Axis value
      */
     public void setPosition(float x, float y) {
         posX = x;
         posY = y;
-        vertexBuffer.clear();
-        drawListBuffer.clear();
+        //vertexBuffer.clear();
+        //drawListBuffer.clear();
         init();
     }
 
+
+    /**
+     * Get the position in form of a Vector3f
+     * @return - Vector3f : The position(x,y,z)
+     */
+    public Vector3f getPosition() {
+        return new Vector3f(this.posX, this.posY, MyGLRenderer.getDepth());
+    }
+
+    /**
+     * Get the X Axis position coordinate.
+     *
+     * @return - float : X Axis coordinate
+     */
     public float getPosX() {
         return posX;
     }
 
+
+    /**
+     * Get the Y Axis position coordinate.
+     *
+     * @return - float : Y Axis coordinate
+     */
     public float getPosY() {
         return posY;
     }
 
+
+    /**
+     * Set the X Axis coordinate.
+     * Call setCoords().
+     *
+     * @param x - float : New X Axis coordinate
+     */
     public void setPosX(float x) {
         posX = x;
         init();
     }
 
+
+    /**
+     * Set the Y Axis coordinate.
+     * Call setCoords()
+     *
+     * @param y - float : New Y Axis coordinate
+     */
     public void setPosY(float y) {
         posY = y;
         init();
     }
 
+
+
+    /**
+     * Get the square's size.
+     *
+     * @return - float : The size
+     */
     public float getSize() {
         return size;
     }
 
+
+    /**
+     * Set the square's size.
+     * Call setCoords().
+     *
+     * @param s - float : New size
+     */
     public void setSize(float s) {
         size = s;
         init();

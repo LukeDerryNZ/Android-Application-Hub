@@ -14,16 +14,26 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import static android.content.ContentValues.TAG;
+
 /**
  * Created by Luke on 24/08/2017.
+ *
  */
-
-public class weather {
+class weather {
 
     private static final String OPENWEATHERMAP_URL = "http://api.openweathermap.org/data/2.5/weather?lat=%s&lon=%s&units=metric";
     private static final String OPENWEATHERMAP_API = "e2fe334522540a12b03fee3a3bc9b577";
 
-    //
+
+    /**
+     * Set the icon image for the current weather.
+     *
+     * @param actualId - int : The ID of the icon
+     * @param sunrise - Long : The sunrise time
+     * @param sunset - Long : The sunset time
+     * @return - String : The icon's String representation
+     */
     private static String setWeatherIcon(int actualId, long sunrise, long sunset){
         int id = actualId / 100;
         String icon = "";
@@ -53,19 +63,26 @@ public class weather {
         return icon;
     }
 
-    //
+
+    /**
+     *
+     */
     public interface AsyncResponse {
 
         void processFinish(String output1, String output2, String output3, String output4, String output5, String output6, String output7, String output8);
     }
 
-    //
-    public static class placeIdTask extends AsyncTask<String, Void, JSONObject> {
+
+    /**
+     * Class encapsulating the reading of the JSONObject data fields.
+     *
+     */
+    static class placeIdTask extends AsyncTask<String, Void, JSONObject> {
 
         // Call back interface
-        public AsyncResponse delegate = null;
+        AsyncResponse delegate = null;
 
-        public placeIdTask(AsyncResponse asyncResponse) {
+        placeIdTask(AsyncResponse asyncResponse) {
             // Assign callback interface through constructor
             delegate = asyncResponse;
         }
@@ -99,11 +116,18 @@ public class weather {
                             (json.getJSONObject("sys").getLong("sunrise")*1000));
                 }
             } catch (JSONException e) {
-                //Log.e(LOG_TAG, "Cannot process JSON results", e);
+                Log.e(TAG, "Cannot process JSON results", e);
             }
         }
     }
 
+    /**
+     * Returns the JSON data from OPENWEATHERMAP_URL.
+     *
+     * @param lat - String : The latitude
+     * @param lon - String : The longitude
+     * @return - JSONObject : The JSON data
+     */
     private static JSONObject getWeatherJSON(String lat, String lon) {
 
         try {
@@ -114,9 +138,8 @@ public class weather {
             connection.addRequestProperty("x-api-key", OPENWEATHERMAP_API);
 
             BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-
             StringBuffer json = new StringBuffer(1024);
-            String tmp = "";
+            String tmp;
             while ((tmp=br.readLine()) != null) {
                 json.append(tmp).append("\n");
             }
@@ -133,4 +156,5 @@ public class weather {
             return null;
         }
     }
+
 }

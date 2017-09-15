@@ -6,7 +6,7 @@ import android.view.MotionEvent;
 
 
 /**
- * Created by Luke on 6/09/2017.
+ * Created by Luke Derry 6/09/2017.
  * A view container where OpenGLES graphics can be drawn to screen.
  *
  */
@@ -21,7 +21,8 @@ public class MyGLSurfaceView extends GLSurfaceView {
 
 
     /**
-     * Main view container constructor
+     * Main view container constructor.
+     *
      * @param context - Context
      */
     public MyGLSurfaceView(Context context) {
@@ -42,7 +43,8 @@ public class MyGLSurfaceView extends GLSurfaceView {
 
 
     /**
-     * Custom TouchEvent - Sets the angle member of an MyGLRenderer instance
+     * Custom TouchEvent - Sets the angle member of an MyGLRenderer instance.
+     *
      * @param e - MotionEvent
      * @return true - TODO: Can add and process false if not touched this frame.
      */
@@ -101,6 +103,11 @@ public class MyGLSurfaceView extends GLSurfaceView {
 //        mPreviousX = x;
 //        mPreviousY = y;
 //        return true;
+    }
+
+    @Override public void onPause() {
+        mRenderer.timer.cancel();
+        mRenderer.timer = null;
     }
 
 
