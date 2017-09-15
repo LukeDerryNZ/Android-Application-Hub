@@ -17,7 +17,7 @@
     <string name="Weather_textView_Title">Weather API</string>
     <string name="Weather_textView_City">Please Enter City Name</string>
     <string name="Weather_button_City">Search</string>
-    <string name="Weather_button_GetLocation">Get Location</string>
+    <string name="Weather_button_GetLocation">Get Weather</string>
     <string name="Weather_textView_Humidity">Humidity</string>
     <string name="Weather_textView_Pressure">Pressure</string>
 
