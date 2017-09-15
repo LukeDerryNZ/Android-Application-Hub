@@ -4,14 +4,12 @@ _A Collection of Micro Applications_
   
 _Created by_ [_**Luke Derry**_](https://www.linkedin.com/in/lukederry/)  
 
-[_**GitHub Pages Site**_](https://lukederrynz.github.io/Android-Application-Hub/)
-
 ###### Links:  
- - [_Main Menu_](https://github.com/LukeDerryNZ/Android-Application-Hub/blob/master/README.md#main-menu-developing)  
- - [_Weather Application_](https://github.com/LukeDerryNZ/Android-Application-Hub/blob/master/README.md#weather-onhold)  
- - [_Non-Scientific Calculator_](https://github.com/LukeDerryNZ/Android-Application-Hub/blob/master/README.md#non-scientific-calculator-developing)  
- - [_User Interface_](https://github.com/LukeDerryNZ/Android-Application-Hub/blob/master/README.md#user-interface-developing)  
- - [ OpenGLES Demo ](https://github.com/LukeDerryNZ/Android-Application-Hub/blob/master/README.md#opengles-demo-developing)
+ - [_Main Menu_](https://github.com/LukeDerryNZ/Android-Application-Hub/blob/master/README.md#main-menu-developing--arrow_up)
+ - [_Weather Application_](https://github.com/LukeDerryNZ/Android-Application-Hub/blob/master/README.md#weather-onhold--arrow_up)
+ - [_Non-Scientific Calculator_](https://github.com/LukeDerryNZ/Android-Application-Hub/blob/master/README.md#non-scientific-calculator-developing--arrow_up)
+ - [_User Interface_](https://github.com/LukeDerryNZ/Android-Application-Hub/blob/master/README.md#user-interface-developing--arrow_up)
+ - [ OpenGLES Demo ](https://github.com/LukeDerryNZ/Android-Application-Hub/blob/master/README.md#opengles-demo-developing--arrow_up)
 
 # Design Doc:  
 
