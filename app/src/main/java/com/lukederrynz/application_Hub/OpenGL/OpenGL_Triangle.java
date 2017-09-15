@@ -7,9 +7,9 @@ import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
 
 /**
- * Created by Luke Derry on 6/09/2017.
- * A triangle primitive consisting of three vertices
+ * Created by Luke Derry on 6/09/2017
  *
+ * A triangle primitive consisting of three vertices
  */
 class OpenGL_Triangle {
 

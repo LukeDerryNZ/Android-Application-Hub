@@ -1,7 +1,8 @@
 package com.lukederrynz.application_Hub.OpenGL;
 
 /**
- * Created by Luke on 13/09/2017.
+ * Created by Luke on 13/09/2017
+ *
  * A Vector class consisting of three floats (x, y, z)
  * Provides some mathematical functions:
  * - getLength

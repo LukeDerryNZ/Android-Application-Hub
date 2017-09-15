@@ -1,9 +1,9 @@
 package com.lukederrynz.application_Hub;
 
 /**
- * Created by Luke on 30/08/2017.
- * Provides common calculator functions.
+ * Created by Luke on 30/08/2017
  *
+ * Provides common calculator functions.
  */
 class Calculator {
 

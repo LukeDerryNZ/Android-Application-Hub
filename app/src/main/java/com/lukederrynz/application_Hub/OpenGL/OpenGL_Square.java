@@ -8,9 +8,9 @@ import java.nio.FloatBuffer;
 import java.nio.ShortBuffer;
 
 /**
- * Created by Luke on 6/09/2017.
- * A square primitive constructed from two adjacent triangles
+ * Created by Luke on 6/09/2017
  *
+ * A square primitive constructed from two adjacent triangles
  */
 
 class OpenGL_Square {

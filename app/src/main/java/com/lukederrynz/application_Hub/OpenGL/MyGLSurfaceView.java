@@ -6,9 +6,9 @@ import android.view.MotionEvent;
 
 
 /**
- * Created by Luke Derry 6/09/2017.
- * A view container where OpenGLES graphics can be drawn to screen.
+ * Created by Luke Derry 6/09/2017
  *
+ * A view container where OpenGLES graphics can be drawn to screen.
  */
 public class MyGLSurfaceView extends GLSurfaceView {
 

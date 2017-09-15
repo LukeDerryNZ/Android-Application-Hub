@@ -7,9 +7,9 @@ import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
 
 /**
- * Created by Luke Derry 12/09/2017.
- * A Line primitive consisting of two vertices (surprising huh)
+ * Created by Luke Derry 12/09/2017
  *
+ * A Line primitive consisting of two vertices (surprising huh)
  */
 public class OpenGL_Line {
 

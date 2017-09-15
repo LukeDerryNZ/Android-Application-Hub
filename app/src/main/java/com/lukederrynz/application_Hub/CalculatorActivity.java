@@ -17,12 +17,12 @@ import java.util.Deque;
 
 
 /**
- * Created by Luke Derry on ‎Friday, ‎1 ‎September ‎2017
+ * Created by Luke Derry on 1/09/‎2017
+ *
  * Non-Scientific Calculator Application.
  * Supports:
  * - Multiplication/Division/Addition/Subtraction
  * - Clear function
- *
  */
 public class CalculatorActivity extends AppCompatActivity {
 

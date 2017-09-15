@@ -16,10 +16,10 @@ import java.util.TimerTask;
 import static android.content.ContentValues.TAG;
 
 /**
- * Created by Luke Derry 6/09/2017.
+ * Created by Luke Derry 6/09/2017
+ *
  * Provides drawing instructions for a GLSurfaceView object. This class
  * must override the OpenGL ES drawing lifecycle methods:
- *
  */
 class MyGLRenderer implements GLSurfaceView.Renderer {
 

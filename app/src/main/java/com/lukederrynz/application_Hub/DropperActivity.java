@@ -9,7 +9,7 @@ import com.lukederrynz.application_Hub.OpenGL.MyGLSurfaceView;
 
 
 /**
- * Created by Luke Derry on ‎Friday, ‎6 ‎September ‎2017
+ * Created by Luke Derry on ‎6/09/‎2017
  * Provides a simple OpenGLES 2.0 application.
  *
  */

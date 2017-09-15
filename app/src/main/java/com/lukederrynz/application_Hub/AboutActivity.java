@@ -12,6 +12,7 @@ import com.lukederrynz.android_test.R;
 
 /**
  * Created by Luke Derry on 1/09/2017
+ *
  * Provides links to my github and linked in profiles.
  * Shameless self-plug ftw!
  *

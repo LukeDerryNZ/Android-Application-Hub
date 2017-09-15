@@ -17,7 +17,7 @@ import java.util.Locale;
 import static android.content.ContentValues.TAG;
 
 /**
- * Created by Luke on 24/08/2017.
+ * Created by Luke on 24/08/2017
  *
  */
 class weather {

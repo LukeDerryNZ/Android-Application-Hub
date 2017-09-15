@@ -10,7 +10,7 @@ import com.lukederrynz.android_test.R;
 
 
 /**
- * Created by Luke Derry on 1/09.2017
+ * Created by Luke Derry on 1/09/2017
  * The Entry Point to my application.
  * Consists of a collection of Activity Start Methods.
  *
