@@ -39,7 +39,6 @@ _Created by_ [_**Luke Derry**_](https://www.linkedin.com/in/lukederry/)
     - [x] User Interface  
     - [x] Implement stack-based equation logic  
     - [x] Allow for continous equations by compounding result as new constant  
-    - [ ] TDD approach to methods and testing  
     - [ ] Refactor event listeners for all buttons  
     - [x] Clear button resets equation stack  
     - [ ] Test arithmetic  
